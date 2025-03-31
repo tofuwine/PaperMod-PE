@@ -142,6 +142,21 @@
     color: var(--pe-post-draft-color);
 }
 
+.pe-entry-ai {
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ffe66d);
+    background-size: 200% auto; /* 背景扩展为2倍宽度 */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 3s linear infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% center; }
+  100% { background-position: -200% center; }
+}
+
 /* 文章 meta */
 
 .pe-post-meta-item {
