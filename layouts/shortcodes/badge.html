@@ -1,14 +1,19 @@
 {{ $.Scratch.Set "key" false }}
 {{ $.Scratch.Set "value" false }}
+{{ $.Scratch.Set "url" "" }}
 
 {{ if .IsNamedParams }}
 {{ $.Scratch.Set "key" (.Get "key") }}
 {{ $.Scratch.Set "value" (.Get "value") }}
+{{ $.Scratch.Set "url" (.Get "url") }}
 {{ else }}
 {{ $.Scratch.Set "key" (.Get 0) }}
 {{ $.Scratch.Set "value" (.Get 1) }}
+{{ $.Scratch.Set "url" (.Get 2) }}
 {{ end }}
 
+
+{{ if eq ($.Scratch.Get "url") "" }}
 <span class="pe-badge">
     <span class="pe-badge-key">
         {{ $.Scratch.Get "key" }}
@@ -17,3 +22,16 @@
         {{ $.Scratch.Get "value" }}
     </span>
 </span>
+{{ else }}
+<a class="pe-badge pe-badge-link" href="{{ $.Scratch.Get "url" }}" target="_blank">
+    <span class="pe-badge-key">
+        {{ $.Scratch.Get "key" }}
+    </span>
+    <span class="pe-badge-value">
+        {{ $.Scratch.Get "value" }}
+    </span>
+    <span class="pe-badge-icon">
+        <i class="fa-solid fa-up-right-from-square"></i>
+    </span>
+</a>
+{{ end }}

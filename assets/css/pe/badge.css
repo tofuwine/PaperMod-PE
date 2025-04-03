@@ -10,6 +10,15 @@
     margin-right: .5rem;
 }
 
+a.pe-badge-link {
+    box-shadow: none;
+}
+
+a.pe-badge-link:hover {
+    transition: none;
+    color: white;
+}
+
 .pe-badge-key {
     padding: .2rem .5rem .2rem 1rem;
 }
@@ -17,4 +26,9 @@
 .pe-badge-value {
     background-color: #4caf50;
     padding: .2rem 1rem .2rem .5rem;
+}
+
+.pe-badge-icon {
+    background-color: #4caf50;
+    padding: .2rem .5rem .2rem 0;
 }
