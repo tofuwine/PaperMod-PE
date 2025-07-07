@@ -63,3 +63,22 @@
     max-height: max-content; /* 设置一个足够大的高度以容纳任何内容，或者使用height:auto */
     opacity: 1;
 }
+
+.pe-search-result-header {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+}
+
+.pe-search-result-date {
+    font-size: 1.4rem;
+    color: gray;
+}
+
+.pe-search-result-content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.4rem;
+    color: gray;
+}

@@ -92,8 +92,14 @@ sInput.onkeyup = function (e) {
 
             for (let item in results) {
                 let title = results[item].item.title ? results[item].item.title : "瞬间 - " + results[item].item.date;
-                    resultSet += `<li class="post-entry"><header class="entry-header">${title}&nbsp;»</header>` +
-                    `<a href="${results[item].item.permalink}" aria-label="${title}"></a></li>`
+                resultSet += `
+                    <li class="post-entry">
+                        <header class="entry-header pe-search-result-header">${title}
+                            <div class="pe-search-result-date">${results[item].item.date}</div>
+                        </header>
+                        <a href="${results[item].item.permalink}" aria-label="${title}"></a>
+                        <div class="pe-search-result-content">${results[item].item.content}</div>
+                    </li>`
             }
 
             resList.innerHTML = resultSet;
