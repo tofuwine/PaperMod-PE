@@ -25,7 +25,7 @@
 <div class="pe-right-sidebar">
 
     {{- /* Scroll To Comment */ -}}
-    {{- if (and (.IsPage) (.Param "comments") (ne .Layout "archives") (ne .Layout "search") (ne .Layout "latest")) }}
+    {{- if (and (.IsPage) (.Param "comments") (ne .Layout "archives") (ne .Layout "search")) }}
     <a href="#pe-comments" class="pe-float-btn" id="comments-link"
        style="visibility: visible; opacity: 1;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.338 29.338" fill="currentColor">

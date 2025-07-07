@@ -24,7 +24,8 @@ window.onload = function () {
                             'title',
                             'permalink',
                             'summary',
-                            'content'
+                            'content',
+                            'date'
                         ]
                     };
                     if (params.fuseOpts) {
@@ -35,7 +36,7 @@ window.onload = function () {
                             minMatchCharLength: params.fuseOpts.minmatchcharlength ?? 1,
                             shouldSort: params.fuseOpts.shouldsort ?? true,
                             findAllMatches: params.fuseOpts.findallmatches ?? false,
-                            keys: params.fuseOpts.keys ?? ['title', 'permalink', 'summary', 'content'],
+                            keys: params.fuseOpts.keys ?? ['title', 'permalink', 'summary', 'content', 'date'],
                             location: params.fuseOpts.location ?? 0,
                             threshold: params.fuseOpts.threshold ?? 0.4,
                             distance: params.fuseOpts.distance ?? 100,
@@ -90,8 +91,9 @@ sInput.onkeyup = function (e) {
             let resultSet = ''; // our results bucket
 
             for (let item in results) {
-                resultSet += `<li class="post-entry"><header class="entry-header">${results[item].item.title}&nbsp;»</header>` +
-                    `<a href="${results[item].item.permalink}" aria-label="${results[item].item.title}"></a></li>`
+                let title = results[item].item.title ? results[item].item.title : "瞬间 - " + results[item].item.date;
+                    resultSet += `<li class="post-entry"><header class="entry-header">${title}&nbsp;»</header>` +
+                    `<a href="${results[item].item.permalink}" aria-label="${title}"></a></li>`
             }
 
             resList.innerHTML = resultSet;

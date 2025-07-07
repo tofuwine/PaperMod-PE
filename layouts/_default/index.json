@@ -1,7 +1,14 @@
 {{- $.Scratch.Add "index" slice -}}
 {{- range site.RegularPages -}}
-    {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) (ne .Layout `latest`) }}
-    {{- $.Scratch.Add "index" (dict "title" .Title "content" .Plain "permalink" .Permalink "summary" .Summary) -}}
+    {{- if and (not .Params.searchHidden) (ne .Layout `archives`) (ne .Layout `search`) }}
+        {{- $defaultTitle := printf "瞬间-%s" (.Date.Format "2006-01-02") -}}
+        {{- $.Scratch.Add "index" (dict
+            "title" (default $defaultTitle .Title)
+            "content" .Plain
+            "permalink" .Permalink
+            "summary" .Summary
+            "date" (.Date.Format "2006-01-02")
+        ) -}}
     {{- end }}
 {{- end -}}
 {{- $.Scratch.Get "index" | jsonify -}}
