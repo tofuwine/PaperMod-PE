@@ -1,0 +1,35 @@
+.pe-terms-badge-link {
+    position: relative;
+    display: inline-block;
+    padding-right: 8px; /* 给徽章留出空间 */
+}
+
+.pe-terms-badge-circle {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+
+    /* 圆形样式 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    background-color: var(--tertiary);
+    border-radius: 50%;
+    font-size: 0.7em;
+    font-weight: bold;
+
+    /* 文字居中 */
+    line-height: 1;
+    padding: 0 3px;
+    box-sizing: border-box;
+
+    /* 阴影效果 */
+    box-shadow: 0 0 0 1px white;
+}
+
+.pe-terms-badge-link:hover .pe-terms-badge-circle {
+    background-color: var(--pe-primary);
+    color: white;
+}
