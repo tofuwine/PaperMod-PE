@@ -65,14 +65,19 @@ img.pe-moment-profile:hover {
     margin-bottom: 1.6rem;
 }
 
-.pe-moment-tag {
+a.pe-moment-tag {
     display: inline-block;
-    padding: 0.25em 0.6em;
+    padding: 0.5em 0.5em;
     font-size: 0.875em;
     line-height: 1;
     color: #999999; /* 暗色字体 */
-    background-color: #f0f0f0; /* 浅色背景 */
+    background: var(--code-bg);
     border-radius: 0.5rem;
+    box-shadow: none;
+}
+.pe-moment-tag:hover {
+    color: var(--pe-primary-hover-color);
+    background: var(--border);
 }
 
 .dark .pe-moment-tag {
@@ -106,7 +111,7 @@ img.pe-moment-profile:hover {
     height: 1.6rem;
     display: inline-block;
     vertical-align: 0.15em;
-    fill: var(--pe-btn-font-color);;
+    fill: var(--pe-btn-font-color);
 }
 
 .pe-moment-comment-btn {
