@@ -189,7 +189,8 @@ html {
     font-weight: normal;
     margin-left: 10px;
     color: var(--secondary);
-    background: rgb(219 216 216);
+    /* background: rgb(219 216 216); */
+    background: var(--code-bg);
     padding: 2px 6px;
     border-radius: 8px;
 }
@@ -261,7 +262,6 @@ html {
     margin-bottom: 0.5rem;
     color: var(--primary);
     line-height: 1.5;
-    transition: color 0.3s ease;
     padding-right: 1rem;
 }
 

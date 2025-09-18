@@ -1,6 +1,6 @@
 {{- define "main" }}
 
-{{ $archiveJS := resources.Get "js/archive-timeline.js" | minify | fingerprint }}
+{{ $archiveJS := resources.Get "js/archive.js" | minify | fingerprint }}
 <script defer crossorigin="anonymous" src="{{ $archiveJS.RelPermalink }}" integrity="{{ $archiveJS.Data.Integrity }}"></script>
 
 <header class="page-header">

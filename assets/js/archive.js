@@ -17,24 +17,24 @@
         // 初始化所有元素的透明度和位置，为动画做准备
     function initElements() {
         // 初始化年份容器
-        yearContainers.forEach((container, index) => {
+        yearContainers.forEach((container) => {
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px)'; // 垂直移动更适合居中时间轴
-            container.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            container.style.transition = `opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s`;
         });
         
         // 初始化月份容器 - 不使用translateX以避免与CSS中的左右布局冲突
-        monthContainers.forEach((container, index) => {
+        monthContainers.forEach((container) => {
             container.style.opacity = '0';
             container.style.transform = 'translateY(15px)'; // 垂直移动以适应时间轴布局
-            container.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s`;
+            container.style.transition = `opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s`;
         });
         
         // 初始化文章条目
-        postEntries.forEach((entry, index) => {
+        postEntries.forEach((entry) => {
             entry.style.opacity = '0';
             entry.style.transform = 'translateY(10px)'; // 垂直移动以适应时间轴布局
-            entry.style.transition = `opacity 0.4s ease ${index * 0.03}s, transform 0.4s ease ${index * 0.03}s`;
+            entry.style.transition = `opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s`;
         });
     }
         
@@ -72,12 +72,12 @@
                                                     setTimeout(() => {
                                                         post.style.opacity = '1';
                                                         post.style.transform = 'translateY(0)'; // 使用垂直移动
-                                                    }, postIndex * 30);
+                                                    }, postIndex * 3);
                                                 });
                                             }, 100);
-                                        }, index * 150);
+                                        }, index * 15);
                                     });
-                                }, 200);
+                                }, 20);
                             }
                         }
                 });
@@ -164,15 +164,6 @@
                         collapseYear(yearContainer, monthsInYear, allPosts, content);
                         currentlyOpenYear = null;
                     } else {
-                        // 如果有其他年份是展开的，则先折叠它
-                        if (currentlyOpenYear && currentlyOpenYear !== yearContainer) {
-                            const otherContent = currentlyOpenYear.querySelector('.pe-archive-details-content');
-                            const otherMonths = Array.from(currentlyOpenYear.querySelectorAll('.archive-month'));
-                            const otherPosts = Array.from(currentlyOpenYear.querySelectorAll('.archive-entry'));
-                            
-                            collapseYear(currentlyOpenYear, otherMonths, otherPosts, otherContent, true);
-                        }
-                        
                         // 展开当前年份
                         expandYear(yearContainer, monthsInYear, allPosts, content);
                         currentlyOpenYear = yearContainer;
@@ -231,69 +222,12 @@
             }
         }
         
-        // 添加文章条目悬停效果
-        function setupEntryHoverEffects() {
-            postEntries.forEach(entry => {
-                // 鼠标移入效果 - 根据月份是左侧还是右侧来确定移动方向
-                entry.addEventListener('mouseenter', function() {
-                    const monthContainer = this.closest('.archive-month');
-                    if (monthContainer.classList.contains('left-month')) {
-                        this.style.transform = 'translateX(8px) translateY(0)';
-                    } else if (monthContainer.classList.contains('right-month')) {
-                        this.style.transform = 'translateX(-8px) translateY(0)';
-                    }
-                    this.style.transition = 'transform 0.2s ease';
-                });
-                
-                // 鼠标移出效果
-                entry.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateX(0) translateY(0)';
-                    this.style.transition = 'transform 0.3s ease';
-                });
-            });
-        }
-        
-        // 实现平滑滚动到顶部按钮
-        function setupScrollToTop() {
-            // 创建滚动到顶部按钮（如果不存在）
-            let topButton = document.getElementById('top-link');
-            if (!topButton) {
-                topButton = document.createElement('button');
-                topButton.id = 'top-link';
-                topButton.className = 'pe-float-btn';
-                topButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"></path></svg>';
-                topButton.title = '回到顶部';
-                document.body.appendChild(topButton);
-            }
-            
-            // 监听滚动事件，显示或隐藏回到顶部按钮
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    topButton.style.visibility = 'visible';
-                    topButton.style.opacity = '1';
-                } else {
-                    topButton.style.visibility = 'hidden';
-                    topButton.style.opacity = '0';
-                }
-            });
-            
-            // 添加点击事件，平滑滚动到顶部
-            topButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
         
         // 初始化所有功能
         function init() {
             initElements();
             setupScrollAnimation();
             setupYearToggle();
-            setupEntryHoverEffects();
-            setupScrollToTop();
         }
         
         // 启动初始化
