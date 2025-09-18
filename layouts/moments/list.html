@@ -111,21 +111,21 @@
         }
         const momentBody = element.closest('.pe-moment-body');
         let giscusAttributes = {
-            "src": "https://giscus.app/client.js",
-            "data-repo": "{{ .Site.Params.giscus.repo }}",
-            "data-repo-id": "{{ .Site.Params.giscus.repoId }}",
-            "data-category": "{{ .Site.Params.giscus.category }}",
-            "data-category-id": "{{ .Site.Params.giscus.categoryId }}",
-            "data-mapping": "{{ .Site.Params.giscus.mapping | default "pathname" }}",
-            "data-term": "moments/" + slug,
-            "data-strict": "{{ .Site.Params.giscus.strict | default "0" }}",
-            "data-reactions-enabled": "{{ .Site.Params.giscus.reactionsEnabled | default "1" }}",
-            "data-emit-metadata": "{{ .Site.Params.giscus.emitMetadata | default "0" }}",
-            "data-input-position": "{{ .Site.Params.giscus.inputPosition | default "bottom" }}",
-            "data-theme": getStoredTheme(),
-            "data-lang": "{{ .Site.Params.giscus.lang | default "en" }}",
-            "crossorigin": "anonymous",
-            "async": "",
+            'src': 'https://giscus.app/client.js',
+            'data-repo': '{{ .Site.Params.giscus.repo }}',
+            'data-repo-id': '{{ .Site.Params.giscus.repoId }}',
+            'data-category': '{{ .Site.Params.giscus.category }}',
+            'data-category-id': '{{ .Site.Params.giscus.categoryId }}',
+            'data-mapping': '{{ .Site.Params.giscus.mapping | default "pathname" }}',
+            'data-term': 'moments/' + slug,
+            'data-strict': '{{ .Site.Params.giscus.strict | default "0" }}',
+            'data-reactions-enabled': '{{ .Site.Params.giscus.reactionsEnabled | default "1" }}',
+            'data-emit-metadata': '{{ .Site.Params.giscus.emitMetadata | default "0" }}',
+            'data-input-position': '{{ .Site.Params.giscus.inputPosition | default "bottom" }}',
+            'data-theme': getStoredTheme(),
+            'data-lang': '{{ .Site.Params.giscus.lang | default "en" }}',
+            'crossorigin': 'anonymous',
+            'async': '',
         };
         const commentDiv = document.createElement('div');
         commentDiv.id = slug;

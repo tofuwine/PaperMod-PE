@@ -1,5 +1,11 @@
 {{- define "main" }}
 
+{{ $css := resources.Get "css/pe/timeline-archive.css" | minify | fingerprint }}
+<link crossorigin="anonymous" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" rel="preload stylesheet" as="style">
+
+{{ $archiveJS := resources.Get "js/archive-timeline.js" | minify | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $archiveJS.RelPermalink }}" integrity="{{ $archiveJS.Data.Integrity }}"></script>
+
 <header class="page-header">
     <h1>{{ .Title }}<sup
             class="archive-count">&nbsp;&nbsp;{{ len (where site.RegularPages "Type" "in" site.Params.mainSections) }}</sup>
@@ -19,11 +25,11 @@
 <div class="pe-archive">
     {{- range $index,$element := ($pages.GroupByPublishDate "2006") }}
     {{- if ne .Key "0001" }}
-    <div class="archive-year pe-details {{ if eq $index 0 }}open{{ end }}">
-        <h2 class="archive-year-header pe-details-summary">
+    <div class="archive-year pe-archive-details {{ if eq $index 0 }}open{{ end }}">
+        <h2 class="archive-year-header pe-archive-details-summary">
             {{- replace .Key "0001" "" }} 年<sup class="archive-count">&nbsp;&nbsp;{{ len .Pages }}</sup>
         </h2>
-        <div class="pe-details-content">
+        <div class="pe-archive-details-content">
             {{- range .Pages.GroupByDate "1" }}
             <div class="archive-month">
                 <h3 class="archive-month-header">
@@ -43,7 +49,36 @@
                             {{- if .Draft }}<sup><span class="pe-entry-draft">&nbsp;&nbsp;[草稿]</span></sup>{{- end }}
                         </h3>
                         <div class="archive-meta">
-                            {{- partial "post_meta.html" . -}}
+                            <span class="pe-post-meta-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                {{- .PublishDate.Format "2006-01-02" }}
+                            </span>
+                            {{- if .Params.categories }}
+                            <span class="pe-post-meta-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                </svg>
+                                {{- range .Params.categories }}
+                                {{- $url := printf "categories/%s" . | urlize }}
+                                <a href="{{ relURL $url }}">{{ . }}</a>
+                                {{- end }}
+                            </span>
+                            {{- end }}
+                            <span class="pe-post-meta-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                {{- .ReadingTime }} 分钟
+                            </span>
                         </div>
                         <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
                     </div>
@@ -57,5 +92,7 @@
     {{- end }}
     {{- end }}
 </div>
+
+
 
 {{- end }}{{/* end main */}}
