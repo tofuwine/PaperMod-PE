@@ -15,28 +15,28 @@
         const yearHeaders = document.querySelectorAll('.archive-year-header');
         
         // 初始化所有元素的透明度和位置，为动画做准备
-        function initElements() {
-            // 初始化年份容器
-            yearContainers.forEach((container, index) => {
-                container.style.opacity = '0';
-                container.style.transform = 'translateX(-20px)';
-                container.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-            });
-            
-            // 初始化月份容器
-            monthContainers.forEach((container, index) => {
-                container.style.opacity = '0';
-                container.style.transform = 'translateX(-15px)';
-                container.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s`;
-            });
-            
-            // 初始化文章条目
-            postEntries.forEach((entry, index) => {
-                entry.style.opacity = '0';
-                entry.style.transform = 'translateX(-10px)';
-                entry.style.transition = `opacity 0.4s ease ${index * 0.03}s, transform 0.4s ease ${index * 0.03}s`;
-            });
-        }
+    function initElements() {
+        // 初始化年份容器
+        yearContainers.forEach((container, index) => {
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(20px)'; // 垂直移动更适合居中时间轴
+            container.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        });
+        
+        // 初始化月份容器 - 不使用translateX以避免与CSS中的左右布局冲突
+        monthContainers.forEach((container, index) => {
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(15px)'; // 垂直移动以适应时间轴布局
+            container.style.transition = `opacity 0.5s ease ${index * 0.05}s, transform 0.5s ease ${index * 0.05}s`;
+        });
+        
+        // 初始化文章条目
+        postEntries.forEach((entry, index) => {
+            entry.style.opacity = '0';
+            entry.style.transform = 'translateY(10px)'; // 垂直移动以适应时间轴布局
+            entry.style.transition = `opacity 0.4s ease ${index * 0.03}s, transform 0.4s ease ${index * 0.03}s`;
+        });
+    }
         
         // 使用Intersection Observer API实现滚动显示动画
         function setupScrollAnimation() {
@@ -51,35 +51,35 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // 当元素进入视口时，显示元素
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateX(0)';
-                        
-                        // 如果是年份容器，自动展开第一个
-                        if (entry.target.classList.contains('archive-year') && entry.target.classList.contains('open')) {
-                            // 延迟显示月份和文章，创建层级动画效果
-                            setTimeout(() => {
-                                const monthsInYear = entry.target.querySelectorAll('.archive-month');
-                                monthsInYear.forEach((month, index) => {
-                                    setTimeout(() => {
-                                        month.style.opacity = '1';
-                                        month.style.transform = 'translateX(0)';
-                                        
-                                        // 延迟显示月份内的文章
+                            // 当元素进入视口时，显示元素
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)'; // 使用垂直移动
+                            
+                            // 如果是年份容器，自动展开第一个
+                            if (entry.target.classList.contains('archive-year') && entry.target.classList.contains('open')) {
+                                // 延迟显示月份和文章，创建层级动画效果
+                                setTimeout(() => {
+                                    const monthsInYear = entry.target.querySelectorAll('.archive-month');
+                                    monthsInYear.forEach((month, index) => {
                                         setTimeout(() => {
-                                            const postsInMonth = month.querySelectorAll('.archive-entry');
-                                            postsInMonth.forEach((post, postIndex) => {
-                                                setTimeout(() => {
-                                                    post.style.opacity = '1';
-                                                    post.style.transform = 'translateX(0)';
-                                                }, postIndex * 30);
-                                            });
-                                        }, 100);
-                                    }, index * 150);
-                                });
-                            }, 200);
+                                            month.style.opacity = '1';
+                                            month.style.transform = 'translateY(0)'; // 使用垂直移动
+                                            
+                                            // 延迟显示月份内的文章
+                                            setTimeout(() => {
+                                                const postsInMonth = month.querySelectorAll('.archive-entry');
+                                                postsInMonth.forEach((post, postIndex) => {
+                                                    setTimeout(() => {
+                                                        post.style.opacity = '1';
+                                                        post.style.transform = 'translateY(0)'; // 使用垂直移动
+                                                    }, postIndex * 30);
+                                                });
+                                            }, 100);
+                                        }, index * 150);
+                                    });
+                                }, 200);
+                            }
                         }
-                    }
                 });
             }, observerOptions);
             
@@ -112,12 +112,12 @@
                     // 设置为显示状态
                     monthsInYear.forEach(month => {
                         month.style.opacity = '1';
-                        month.style.transform = 'translateX(0)';
+                        month.style.transform = 'translateY(0)'; // 使用垂直移动
                     });
                     
                     allPosts.forEach(post => {
                         post.style.opacity = '1';
-                        post.style.transform = 'translateX(0)';
+                        post.style.transform = 'translateY(0)'; // 使用垂直移动
                     });
                     
                     currentlyOpenYear = yearContainer;
@@ -133,12 +133,12 @@
                         // 设置为隐藏状态
                         monthsInYear.forEach(month => {
                             month.style.opacity = '0';
-                            month.style.transform = 'translateX(-15px)';
+                            month.style.transform = 'translateY(15px)'; // 使用垂直移动
                         });
                         
                         allPosts.forEach(post => {
                             post.style.opacity = '0';
-                            post.style.transform = 'translateX(-10px)';
+                            post.style.transform = 'translateY(10px)'; // 使用垂直移动
                         });
                     } else {
                         currentlyOpenYear = header.closest('.archive-year');
@@ -188,16 +188,16 @@
                 
                 // 加速折叠收回的速度：设置更快的过渡时间
                 posts.forEach(post => {
-                    post.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
-                    post.style.opacity = '0';
-                    post.style.transform = 'translateX(-10px)';
-                });
-                
-                months.forEach(month => {
-                    month.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
-                    month.style.opacity = '0';
-                    month.style.transform = 'translateX(-15px)';
-                });
+                            post.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+                            post.style.opacity = '0';
+                            post.style.transform = 'translateY(10px)'; // 使用垂直移动
+                        });
+                        
+                        months.forEach(month => {
+                            month.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+                            month.style.opacity = '0';
+                            month.style.transform = 'translateY(15px)'; // 使用垂直移动
+                        });
                 
                 // 更快的延迟时间
                 setTimeout(() => {
@@ -215,34 +215,39 @@
                 // 优化显示逻辑，加快首次展开速度
                 // 同时显示所有月份，使用非常小的延迟
                 months.forEach((month, index) => {
-                    setTimeout(() => {
-                        month.style.opacity = '1';
-                        month.style.transform = 'translateX(0)';
-                    }, index * 20); // 更小的延迟
-                });
-                
-                // 更快地显示文章，使用更紧凑的交错动画
-                posts.forEach((post, index) => {
-                    setTimeout(() => {
-                        post.style.opacity = '1';
-                        post.style.transform = 'translateX(0)';
-                    }, 50 + index * 10); // 减少基础延迟和间隔
-                });
+                            setTimeout(() => {
+                                month.style.opacity = '1';
+                                month.style.transform = 'translateY(0)'; // 使用垂直移动
+                            }, index * 20); // 更小的延迟
+                        });
+                        
+                        // 更快地显示文章，使用更紧凑的交错动画
+                        posts.forEach((post, index) => {
+                            setTimeout(() => {
+                                post.style.opacity = '1';
+                                post.style.transform = 'translateY(0)'; // 使用垂直移动
+                            }, 50 + index * 10); // 减少基础延迟和间隔
+                        });
             }
         }
         
         // 添加文章条目悬停效果
         function setupEntryHoverEffects() {
             postEntries.forEach(entry => {
-                // 鼠标移入效果
+                // 鼠标移入效果 - 根据月份是左侧还是右侧来确定移动方向
                 entry.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateX(8px)';
+                    const monthContainer = this.closest('.archive-month');
+                    if (monthContainer.classList.contains('left-month')) {
+                        this.style.transform = 'translateX(8px) translateY(0)';
+                    } else if (monthContainer.classList.contains('right-month')) {
+                        this.style.transform = 'translateX(-8px) translateY(0)';
+                    }
                     this.style.transition = 'transform 0.2s ease';
                 });
                 
                 // 鼠标移出效果
                 entry.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateX(0)';
+                    this.style.transform = 'translateX(0) translateY(0)';
                     this.style.transition = 'transform 0.3s ease';
                 });
             });

@@ -1,59 +1,359 @@
+/********** 时间轴归档样式 **********/
+/***********************************/
+
 .pe-archive {
-    padding-top: 2rem;
+    position: relative;
+    max-width: 1000px;
+    margin: 2rem auto;
+    overflow-x: hidden; /* 防止水平滚动条出现 */
 }
 
-.archive-posts {
-    width: 100%;
-    font-size: 1.6rem;
+/* 防止页面出现垂直滚动条跳动 */
+html {
+    scrollbar-gutter: stable;
 }
 
+/* 时间轴线 - 移到屏幕中间 */
+.pe-archive::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 3px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--tertiary),
+        var(--tertiary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    border-radius: 1.5px;
+    transform: translateX(-50%);
+}
+
+/* 年份折叠时，两个年份之间的时间轴以虚线表示 */
+.pe-archive .archive-year:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: calc(100% + 16px);
+    bottom: -2.5rem;
+    left: 50%;
+    width: 3px;
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--tertiary),
+        var(--tertiary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* 年份容器 */
 .archive-year {
+    position: relative;
+    margin-bottom: 2.5rem;
     padding-bottom: 2rem;
-    margin-top: 2rem;
 }
 
-.archive-year:not(:last-of-type) {
-    border-bottom: 2px solid var(--border);
+.archive-month:nth-child(odd) .archive-month-header {
+    justify-content: flex-end;
 }
 
-.archive-month {
+/* 年份标题容器 - 调整布局 */
+.archive-year-header {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem 0;
+    color: var(--primary);
     display: flex;
-    align-items: flex-start;
-    padding: 1rem 0;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
+.archive-year-header:hover {
+    color: var(--pe-primary);
+}
+
+/* 年份文本容器 - 确保年份在时间轴中间 */
+.archive-year-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* 年份统计数量 - 调整为年份下方显示 */
+.archive-year-header .archive-count {
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    color: var(--secondary);
+    background: var(--code-bg);
+    padding: 4px 12px;
+    border-radius: 15px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.archive-year-header:hover .archive-count {
+    background: var(--pe-primary-hover-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* 月份容器 - 实现左右两侧交替显示 */
+.archive-month {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+/* 月份在时间轴上的小圆点 */
+.archive-month::before {
+    content: '';
+    position: absolute;
+    top: 6px; /* 与月份标题对齐 */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--pe-primary);
+    border: 2px solid var(--theme);
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 右侧文章标志 */
+.archive-month:nth-child(even)::before {
+    right: 50%;
+    transform: translateX(50%);
+    margin-right: 50%;
+}
+
+/* 左侧文章标志 */
+.archive-month:nth-child(odd)::before {
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: 50%;
+}
+
+/* 奇数月份显示在左侧，偶数月份显示在右侧 */
+.archive-month:nth-child(odd) {
+    margin-left: 0;
+    margin-right: 50%;
+    padding-left: 0;
+    padding-right: 2rem;
+}
+
+.archive-month:nth-child(even) {
+    margin-left: 50%;
+    margin-right: 0;
+    padding-left: 2rem;
+    padding-right: 0;
+}
+
+/* 月份标题 - 添加装饰线连接到时间轴 */
 .archive-month-header {
-    margin: 2.5rem 0;
-    width: 10rem;
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
 }
 
-.archive-month:not(:last-of-type) {
+/* 为月份标题添加连接线到时间轴 - 已移除 */
+
+/* 月份统计数量 */
+.archive-month-header .archive-count {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-left: 10px;
+    color: var(--secondary);
+    background: var(--code-bg);
+    padding: 2px 6px;
+    border-radius: 8px;
+}
+
+/* 文章列表容器 - 优化样式 */
+.archive-posts {
+    position: relative;
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 单个文章条目 */
+.archive-entry {
+    position: relative;
+    padding: 0.8rem 0;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
     border-bottom: 1px solid var(--border);
 }
 
-.archive-entry {
-    position: relative;
-    padding: .5rem 1rem;
-    margin: 1rem 0;
+.archive-entry:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
+/* 文章条目悬停效果 */
 .archive-entry:hover {
-    background-color: rgb(214, 214, 214);
+    transform: translateX(5px);
+    background: rgba(var(--primary-rgb), 0.03);
     border-radius: var(--radius);
 }
 
-.dark .archive-entry:hover {
-    background-color: rgb(65, 66, 68);
-    border-radius: var(--radius);
-}
-
+/* 文章标题 */
 .archive-entry-title {
-    margin: 5px 0;
-    font-weight: 400;
+    position: relative;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    line-height: 1.5;
+    transition: color 0.3s ease;
+    padding-right: 1rem;
 }
 
-.archive-count,
+.archive-entry:hover .archive-entry-title {
+    color: var(--pe-primary);
+}
+
+/* 文章元数据 */
 .archive-meta {
+    font-size: 1.1rem;
     color: var(--secondary);
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 文章元数据项 */
+.archive-meta .pe-post-meta-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+.archive-meta .pe-post-meta-item svg {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    color: var(--secondary);
+}
+
+/* 文章链接覆盖层 */
+.archive-entry .entry-link {
+    position: absolute;
+    left: -30px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0;
+}
+
+/* 文章前的点装饰 - 已移除 */
+
+/* 可折叠内容容器 */
+.pe-archive-details-content {
+    max-height: 0;
+    overflow-y: hidden;
+    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pe-archive-details.open .pe-archive-details-content {
+    max-height: 2000px;
+    transition: max-height 0.8s ease-in-out;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .pe-archive {
+        padding-left: 25px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    /* 年份圆圈装饰 - 已移除 */
+    
+    .archive-year-header {
+        font-size: 1.8rem;
+    }
+    
+    .archive-month-header {
+        font-size: 1.4rem;
+    }
+    
+    .archive-entry-title {
+        font-size: 1.2rem;
+    }
+    
+    .archive-month:nth-child(odd),
+    .archive-month:nth-child(even) {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 25px;
+        padding-right: 0;
+    }
+    
+    /* 文章前的点装饰 - 已移除 */
+    
+    /* 月份在时间轴上的小圆点 - 响应式调整 */
+    .archive-month::before {
+        left: 0;
+        top: 28px;
+        width: 10px;
+        height: 10px;
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .archive-year-header {
+        font-size: 1.6rem;
+    }
+    
+    .archive-month-header {
+        font-size: 1.3rem;
+    }
+    
+    .archive-entry-title {
+        font-size: 1.1rem;
+    }
+    
+    .archive-meta {
+        font-size: 1rem;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}
+
+/* 深色模式适配 */
+.dark .pe-archive::before {
+    background: var(--tertiary);
+}
+
+.dark .archive-year-header:hover {
+    color: #6366f1;
 }

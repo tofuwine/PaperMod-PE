@@ -89,7 +89,7 @@ body:not(.dark) #sun {
     bottom: -.2rem; /* 调整下划线位置，根据需要调整值 */
     width: 100%; /* 下划线宽度为标签元素的100% */
     height: .2rem; /* 下划线的高度 */
-    background-color: #e26c56; /* 下划线颜色 */
+    background-color: var(--pe-primary-hover-color); /* 下划线颜色 */
     border-radius: var(--radius);
     transform: scaleX(0); /* 初始状态下下划线宽度为0 */
     transition: transform 0.3s ease; /* 添加过渡效果，让下划线出现平滑 */

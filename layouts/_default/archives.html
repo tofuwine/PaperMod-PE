@@ -1,8 +1,5 @@
 {{- define "main" }}
 
-{{ $css := resources.Get "css/pe/timeline-archive.css" | minify | fingerprint }}
-<link crossorigin="anonymous" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" rel="preload stylesheet" as="style">
-
 {{ $archiveJS := resources.Get "js/archive-timeline.js" | minify | fingerprint }}
 <script defer crossorigin="anonymous" src="{{ $archiveJS.RelPermalink }}" integrity="{{ $archiveJS.Data.Integrity }}"></script>
 
@@ -27,14 +24,15 @@
     {{- if ne .Key "0001" }}
     <div class="archive-year pe-archive-details {{ if eq $index 0 }}open{{ end }}">
         <h2 class="archive-year-header pe-archive-details-summary">
-            {{- replace .Key "0001" "" }} 年<sup class="archive-count">&nbsp;&nbsp;{{ len .Pages }}</sup>
+            <span class="archive-year-text">{{- replace .Key "0001" "" }}</span>
+            <sup class="archive-count">{{ len .Pages }}</sup>
         </h2>
         <div class="pe-archive-details-content">
             {{- range .Pages.GroupByDate "1" }}
             <div class="archive-month">
                 <h3 class="archive-month-header">
                     {{- .Key }} 月
-                    <sup class="archive-count">&nbsp;&nbsp;{{ len .Pages }}
+                    <sup class="archive-count">{{ len .Pages }}
                     </sup>
                 </h3>
                 <div class="archive-posts">

@@ -37,6 +37,8 @@
 
     --pe-scrollbar-bg-color: rgb(163, 163, 165);
     --pe-scrollbar-hover-bg-color: rgb(113, 113, 117);
+    /* 代码背景悬停色 */
+    --code-bg-hover: var(--pe-primary);
 }
 
 .dark {
@@ -46,8 +48,10 @@
     --pe-secondary: rgba(108, 131, 181, 0.8);
 
     /*****************************************/
-    /******* 自定义颜色参数 (以 tw 为前缀) *******/
+    /******* 自定义颜色参数 (以 pe 为前缀) *******/
     /*****************************************/
+    --pe-primary: #6366f1;
+
     --pe-underline-hover-color: #e26c56;
     --pe-post-top-color: rgba(205, 32, 31, 0.8);
     --pe-post-reposted-color: rgba(45, 183, 245, 0.8);
@@ -66,6 +70,10 @@
 
     --pe-scrollbar-bg-color: rgb(113, 113, 117);
     --pe-scrollbar-hover-bg-color: rgb(163, 163, 165);
+    /* 代码背景悬停色 - 深色模式 */
+    --code-bg-hover: #6366f1;
+
+    --pe-primary-hover-color: #6366f1;
 }
 
 /* 鼠标选中文本颜色 */
