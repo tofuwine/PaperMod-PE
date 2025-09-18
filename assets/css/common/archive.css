@@ -68,13 +68,15 @@ html {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     color: var(--primary);
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
     transition: color 0.3s ease;
+    margin-inline: 40%;
+    border-radius: var(--radius);
 }
 
 .archive-year-header:hover {
@@ -122,7 +124,7 @@ html {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: var(--pe-primary);
+    background: var(--tertiary);
     border: 2px solid var(--theme);
     z-index: 2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -133,6 +135,16 @@ html {
     right: 50%;
     transform: translateX(50%);
     margin-right: 50%;
+    transition: all 0.3s ease;
+}
+
+/* 当archive-month hover时，改变月份圆点和月份标题颜色 */
+.archive-month:hover::before {
+    background: var(--pe-primary-hover-color);
+}
+
+.archive-month:hover .archive-month-header {
+    color: var(--pe-primary-hover-color);
 }
 
 /* 左侧文章标志 */
@@ -177,7 +189,7 @@ html {
     font-weight: normal;
     margin-left: 10px;
     color: var(--secondary);
-    background: var(--code-bg);
+    background: rgb(219 216 216);
     padding: 2px 6px;
     border-radius: 8px;
 }
@@ -189,15 +201,28 @@ html {
     border-radius: var(--radius);
     padding: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+/* 文章容器悬停效果 */
+.archive-month:hover .archive-posts {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.archive-month:hover .archive-count {
+    background: var(--pe-primary-hover-color);
+    color: white;
 }
 
 /* 单个文章条目 */
 .archive-entry {
     position: relative;
-    padding: 0.8rem 0;
+    padding: 0.8rem 1rem;
     margin-bottom: 0.8rem;
     transition: all 0.3s ease;
     border-bottom: 1px solid var(--border);
+    border-radius: var(--radius);
 }
 
 .archive-entry:last-child {
@@ -208,8 +233,24 @@ html {
 /* 文章条目悬停效果 */
 .archive-entry:hover {
     transform: translateX(5px);
-    background: rgba(var(--primary-rgb), 0.03);
-    border-radius: var(--radius);
+    background: var(--pe-primary-hover-color);
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* 文章标题悬停颜色优化 */
+.archive-entry:hover .archive-entry-title {
+    color: white;
+}
+
+/* 文章元数据悬停颜色优化 */
+.archive-entry:hover .archive-meta {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.archive-entry:hover .archive-meta .pe-post-meta-item svg {
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* 文章标题 */
@@ -222,10 +263,6 @@ html {
     line-height: 1.5;
     transition: color 0.3s ease;
     padding-right: 1rem;
-}
-
-.archive-entry:hover .archive-entry-title {
-    color: var(--pe-primary);
 }
 
 /* 文章元数据 */
@@ -326,6 +363,7 @@ html {
         width: 10px;
         height: 10px;
         transform: none;
+        transition: all 0.3s ease;
     }
 }
 
@@ -351,9 +389,39 @@ html {
 
 /* 深色模式适配 */
 .dark .pe-archive::before {
-    background: var(--tertiary);
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--tertiary),
+        var(--tertiary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
 }
 
 .dark .archive-year-header:hover {
     color: #6366f1;
+}
+
+/* 深色模式下的文章容器悬停效果 */
+.dark .archive-month:hover .archive-posts {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.dark .archive-month:hover::before {
+    background: var(--pe-primary-hover-color);
+}
+
+.dark .archive-month:hover .archive-month-header {
+    color: var(--pe-primary-hover-color);
+}
+
+/* 深色模式下的文章条目悬停效果 */
+.dark .archive-entry:hover {
+    background: #6366f1;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* 深色模式下月份圆点样式 */
+.dark .archive-month::before {
+    border-color: grey;
 }
