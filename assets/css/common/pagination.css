@@ -1,0 +1,108 @@
+/* 分页样式 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.pagination .prev,
+.pagination .next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--primary);
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.pagination .prev::before,
+.pagination .next::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.pagination .prev:hover,
+.pagination .next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    color: var(--pe-primary);
+    border-color: var(--pe-primary);
+}
+
+.pagination .prev:hover::before,
+.pagination .next:hover::before {
+    left: 100%;
+}
+
+.pagination .prev {
+    margin-right: auto;
+}
+
+.pagination .next {
+    margin-left: auto;
+}
+
+/* 当没有上一页或下一页时隐藏按钮 */
+.pagination .prev:not(:link):not(:visited),
+.pagination .next:not(:link):not(:visited) {
+    display: none;
+}
+
+/* 深色模式适配 */
+.dark .pagination .prev,
+.dark .pagination .next {
+    background: var(--entry);
+    border-color: var(--border);
+    color: var(--primary);
+}
+
+.dark .pagination .prev:hover,
+.dark .pagination .next:hover {
+    color: #6366f1;
+    border-color: #6366f1;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.15);
+}
+
+.dark .pagination .prev::before,
+.dark .pagination .next::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .pagination {
+        gap: 0.5rem;
+    }
+    
+    .pagination .prev,
+    .pagination .next {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination .prev,
+    .pagination .next {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+    }
+}

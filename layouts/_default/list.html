@@ -95,6 +95,16 @@
   <footer class="entry-footer">
     {{- partial "post_meta.html" . -}}
   </footer>
+
+  {{- if .Params.tags }}
+    <div class="entry-tags">
+        {{- range .Params.tags }}
+        {{- $tagURL := printf "tags/%s" (.) | relURL }}
+        <a href="{{ $tagURL }}" class="entry-tag">{{ . }}</a>
+        {{- end }}
+    </div>
+    {{- end }}
+
   {{- end }}
   <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
 </article>

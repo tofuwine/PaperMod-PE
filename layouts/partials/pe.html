@@ -14,6 +14,7 @@
 {{ $PeCSSSlice = $PeCSSSlice | append (resources.Get "css/pe/ai.css") }}
 {{ $PeCSSSlice = $PeCSSSlice | append (resources.Get "css/pe/gist.css") }}
 {{ $PeCSSSlice = $PeCSSSlice | append (resources.Get "css/pe/terms.css") }}
+{{ $PeCSSSlice = $PeCSSSlice | append (resources.Get "css/common/pagination.css") }}
 
 {{ if .Param "enableCopyright" }}
 {{ $PeCSSSlice = $PeCSSSlice | append (resources.Get "css/pe/copyright.css") }}

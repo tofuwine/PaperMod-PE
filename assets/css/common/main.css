@@ -11,29 +11,6 @@
     font-size: 40px;
 }
 
-.pagination {
-    display: flex;
-}
-
-.pagination a {
-    color: var(--pe-btn-font-color);
-    font-size: 13px;
-    line-height: 36px;
-    background-color: var(--pe-btn-bg-color);
-    border-radius: calc(36px / 2);
-    padding: 0 16px;
-}
-
-.pagination a:hover {
-    transition: 0.15s;
-    color: var(--pe-btn-font-color);
-    background-color: var(--pe-primary-hover-color);
-}
-
-.pagination .next {
-    margin-inline-start: auto;
-}
-
 
 .social-icons a {
     display: inline-flex;
