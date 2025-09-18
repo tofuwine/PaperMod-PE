@@ -3,9 +3,6 @@
 {{ $css := resources.Get "css/pe/posts.css" | minify | fingerprint }}
 <link crossorigin="anonymous" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" rel="preload stylesheet" as="style">
 
-{{ $cardEffectsJS := resources.Get "js/pe-card-effects.js" | minify | fingerprint }}
-<script defer crossorigin="anonymous" src="{{ $cardEffectsJS.RelPermalink }}" integrity="{{ $cardEffectsJS.Data.Integrity }}"></script>
-
 
 <header class="page-header">
 </header>

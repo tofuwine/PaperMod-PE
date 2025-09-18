@@ -31,6 +31,9 @@
 {{ end }}
 
 {{ $PeJSSlice = $PeJSSlice | append (resources.Get "js/pe-code.js") }}
+{{ $PeJSSlice = $PeJSSlice | append (resources.Get "js/pe-card-effects.js") }}
+
+
 
 <!-- go top js -->
 {{ if .Param "enableScrollToTop" }}
