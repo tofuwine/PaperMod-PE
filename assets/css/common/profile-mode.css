@@ -22,29 +22,102 @@
 }
 
 .buttons {
+    display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     max-width: 400px;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.6rem;
+    background: var(--entry);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
-    margin: 8px;
-    padding: 6px;
-    transition: transform 0.1s;
-    background-color: var(--pe-btn-bg-color);
-    color: var(--pe-btn-font-color);
+    color: var(--primary);
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
 }
 
 .button:hover {
-    transition: 0.15s;
-    color: var(--pe-btn-font-color);
-    background-color: var(--pe-primary-hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    color: var(--pe-primary);
+    border-color: var(--pe-primary);
+    background-color: var(--entry);
+}
+
+.button:hover::before {
+    left: 100%;
 }
 
 .button-inner {
     padding: 0 8px;
+    position: relative;
+    z-index: 1;
 }
 
 .button:active {
     transform: scale(0.96);
+}
+
+/* 深色模式适配 */
+.dark .button {
+    background: var(--entry);
+    border-color: var(--border);
+    color: var(--primary);
+}
+
+.dark .button:hover {
+    color: #6366f1;
+    border-color: #6366f1;
+    box-shadow: 0 6px 12px rgba(99, 102, 241, 0.15);
+}
+
+.dark .button::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .buttons {
+        gap: 0.5rem;
+    }
+    
+    .button {
+        padding: 0.6rem 1.2rem;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .buttons {
+        max-width: 100%;
+    }
+    
+    .button {
+        padding: 0.5rem 1rem;
+        font-size: 1.2rem;
+    }
 }
