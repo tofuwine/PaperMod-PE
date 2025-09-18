@@ -33,82 +33,207 @@
     -webkit-line-clamp: unset;
 }
 
+/* 现代卡片设计 */
 .post-entry {
     position: relative;
-    margin-bottom: var(--gap);
-    padding: var(--gap);
+    margin-bottom: calc(var(--gap) * 1.5);
+    padding: calc(var(--gap) * 1.2);
     background: var(--entry);
-    border-radius: var(--radius);
-    transition: transform 0.1s;
+    border-radius: calc(var(--radius) * 1.5);
     border: 1px solid var(--border);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
+/* 卡片顶部渐变效果 - 默认隐藏状态 */
+.post-entry::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pe-primary) 0%, var(--pe-secondary) 100%);
+    opacity: 0;
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* 悬停效果 - 顶部渐变从中间向两边扩散 */
+.post-entry:hover::before {
+    width: 100%;
+    left: 0;
+    opacity: 1;
+}
+
+
+/* 悬停效果增强 */
 .post-entry:hover {
-    transform: translateY(-.5rem);
-    box-shadow: 0 1.6rem 2rem -1.4rem rgb(65 66 68 / 50%);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
 }
 
-.post-entry:active {
-    transform: scale(0.96);
+/* 深色模式下的渐变效果调整 */
+.dark .post-entry::before {
+    background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
 }
+
+.dark .post-entry::after {
+    background: 
+        linear-gradient(90deg, #6366f1 0%, transparent 0%) top,
+        linear-gradient(90deg, transparent 0%, #6366f1 0%) bottom,
+        linear-gradient(180deg, #6366f1 0%, transparent 0%) left,
+        linear-gradient(180deg, transparent 0%, #6366f1 0%) right;
+}
+
+.dark .post-entry:hover::after {
+    background: 
+        linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%) top,
+        linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%) bottom,
+        linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%) right,
+        linear-gradient(180deg, #8b5cf6 0%, #6366f1 100%) left;
+}
+
 
 .tag-entry .entry-cover {
     display: none;
 }
 
+/* 标题样式优化 */
 .entry-header h2 {
-    font-size: 2.4rem;
-    line-height: 1.3;
+    font-size: 2.2rem;
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
+    font-weight: 600;
 }
 
+.post-entry:hover .entry-header h2 {
+    color: var(--pe-primary);
+}
+
+/* 深色模式下的标题颜色变化 */
+.dark .post-entry:hover .entry-header h2 {
+    color: #6366f1;
+}
+
+/* 摘要样式优化 */
 .entry-content {
-    margin: 8px 0;
+    margin: 12px 0 16px;
     color: var(--secondary);
     font-size: 1.4rem;
-    line-height: 1.6;
+    line-height: 1.7;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
 }
 
+/* 页脚样式优化 */
 .entry-footer {
     color: var(--secondary);
     font-size: 1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
 }
 
+/* 链接覆盖层 */
 .entry-link {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+    z-index: 1;
+    opacity: 0;
 }
 
+/* 提示样式优化 */
 .entry-hint {
     color: var(--secondary);
     margin-left: auto;
+    font-size: 1.2rem;
 }
 
 .entry-hint-parent {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
+/* 封面图样式优化 */
 .entry-cover {
-    font-size: 14px;
-    margin-bottom: var(--gap);
-    text-align: center;
+    margin-bottom: 16px;
+    overflow: hidden;
+    border-radius: calc(var(--radius) * 1.2);
 }
 
 .entry-cover img {
-    border-radius: var(--radius);
+    border-radius: calc(var(--radius) * 1.2);
     pointer-events: none;
     width: 100%;
     height: auto;
+    transition: transform 0.5s ease;
+}
+
+.post-entry:hover .entry-cover img {
+    transform: scale(1.03);
 }
 
 .entry-cover a {
     color: var(--secondary);
-    box-shadow: 0 1px 0 var(--primary);
+    box-shadow: 0 1px 0 var(--pe-primary);
+    transition: color 0.3s ease;
+}
+
+.entry-cover a:hover {
+    color: var(--pe-primary);
+}
+
+/* 标签样式 */
+.entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+.entry-tag {
+    font-size: 1.2rem;
+    padding: 2px 8px;
+    background: var(--code-bg);
+    color: var(--secondary);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.post-entry:hover .entry-tag {
+    background: var(--pe-primary);
+    color: var(--theme);
+}
+
+/* 深色模式下的标签颜色变化 */
+.dark .post-entry:hover .entry-tag {
+    background: #6366f1;
+    color: var(--theme);
+}
+
+/* 点击波纹效果 */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+    z-index: 10;
 }

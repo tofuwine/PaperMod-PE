@@ -9,6 +9,7 @@
 
     --pe-primary: #e26c56;
     --pe-primary-2: #223051;
+    --pe-secondary: #6c83b5;
     --pe-primary-hover-color: var(--pe-primary);
     /* 主题色 (background) */
     --pe-btn-bg-color: var(--pe-primary-2);
@@ -42,6 +43,7 @@
     /* 主题颜色参数 */
     --primary: rgba(180, 181, 182, 0.8);
     --content: rgba(196, 196, 197, 0.8);
+    --pe-secondary: rgba(108, 131, 181, 0.8);
 
     /*****************************************/
     /******* 自定义颜色参数 (以 tw 为前缀) *******/
