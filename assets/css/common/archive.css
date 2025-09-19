@@ -175,7 +175,7 @@ html {
     align-items: center;
     cursor: pointer;
     transition: color 0.3s ease;
-    margin-inline: 40%;
+    margin-inline: 30%;
     border-radius: var(--radius);
     background: var(--code-bg);
 }
@@ -299,7 +299,7 @@ html {
 /* 文章列表容器 - 优化样式 */
 .archive-posts {
     position: relative;
-    background: #fff;
+    background: var(--entry);
     border-radius: var(--radius);
     padding: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -500,7 +500,7 @@ html {
 }
 
 .dark .archive-posts {
-    background: var(--code-bg);
+    background: var(--entry);
 }
 
 .dark .archive-year-header:hover {
