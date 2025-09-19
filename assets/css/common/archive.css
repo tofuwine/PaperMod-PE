@@ -1,6 +1,120 @@
 /********** 时间轴归档样式 **********/
 /***********************************/
 
+/* 归档页面头部样式 */
+.pe-archive-header {
+    position: relative;
+    margin-bottom: 3rem;
+    text-align: center;
+    padding: 2rem 1rem;
+    background: var(--code-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* 头部内容容器 */
+.pe-archive-header-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* 归档页面标题 */
+.pe-archive-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+/* 总文章数量 */
+.pe-archive-total-count {
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--secondary);
+    background: var(--theme);
+    padding: 4px 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+/* 归档页面描述 */
+.pe-archive-description {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.6;
+}
+
+/* 提示文本 */
+.pe-archive-tip {
+    font-size: 1rem;
+    color: var(--secondary);
+    margin-top: 1rem;
+    opacity: 0.8;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .pe-archive-header {
+        padding: 1.5rem 0.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .pe-archive-title {
+        font-size: 2.2rem;
+    }
+    
+    .pe-archive-total-count {
+        font-size: 1.2rem;
+    }
+    
+    .pe-archive-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .pe-archive-tip {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pe-archive-header {
+        padding: 1.2rem 0.6rem;
+    }
+    
+    .pe-archive-title {
+        font-size: 1.8rem;
+    }
+    
+    .pe-archive-total-count {
+        font-size: 1rem;
+        padding: 2px 8px;
+    }
+}
+
+/* 深色模式适配 */
+.dark .pe-archive-header {
+    background: var(--code-bg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark .pe-archive-header::before {
+    background: repeating-linear-gradient(
+        to bottom,
+        var(--tertiary),
+        var(--tertiary) 6px,
+        transparent 6px,
+        transparent 12px
+    );
+}
+
 .pe-archive {
     position: relative;
     max-width: 1000px;
@@ -56,7 +170,6 @@ html {
     position: relative;
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
-    animation: fadeInUp 0.5s ease forwards;
 }
 
 .archive-month:nth-child(odd) .archive-month-header {
@@ -66,7 +179,7 @@ html {
 /* 年份标题容器 - 调整布局 */
 .archive-year-header {
     position: relative;
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     padding: 0.5rem;
@@ -78,6 +191,7 @@ html {
     transition: color 0.3s ease;
     margin-inline: 40%;
     border-radius: var(--radius);
+    background: var(--code-bg);
 }
 
 .archive-year-header:hover {
@@ -92,7 +206,7 @@ html {
 
 /* 年份统计数量 - 调整为年份下方显示 */
 .archive-year-header .archive-count {
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-weight: normal;
     margin-top: 0.5rem;
     margin-left: 0;
@@ -173,7 +287,7 @@ html {
 /* 月份标题 - 添加装饰线连接到时间轴 */
 .archive-month-header {
     position: relative;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 1rem;
     padding: 0.3rem 0;
@@ -222,6 +336,7 @@ html {
     position: relative;
     padding: 0.8rem 1rem;
     margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
     border-bottom: 1px solid var(--border);
     border-radius: var(--radius);
 }

@@ -3,15 +3,18 @@
 {{ $archiveJS := resources.Get "js/archive.js" | minify | fingerprint }}
 <script defer crossorigin="anonymous" src="{{ $archiveJS.RelPermalink }}" integrity="{{ $archiveJS.Data.Integrity }}"></script>
 
-<header class="page-header">
-    <h1>{{ .Title }}<sup
-            class="archive-count">&nbsp;&nbsp;{{ len (where site.RegularPages "Type" "in" site.Params.mainSections) }}</sup>
-    </h1>
-    {{- if .Description }}
-    <div class="post-description">
-        {{ .Description }}
+<header class="pe-archive-header">
+    <div class="pe-archive-header-content">
+        <h1 class="pe-archive-title">{{ .Title }}<sup
+                class="pe-archive-total-count">{{ len (where site.RegularPages "Type" "in" site.Params.mainSections) }}</sup>
+        </h1>
+        {{- if .Description }}
+        <div class="pe-archive-description">
+            {{ .Description }}
+        </div>
+        {{- end }}
+        <div class="pe-archive-tip" id="pe-archive-tip">点击年份可展开/折叠</div>
     </div>
-    {{- end }}
 </header>
 
 {{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
@@ -70,11 +73,7 @@
                             </span>
                             {{- end }}
                             <span class="pe-post-meta-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                                </svg>
+                                <svg viewBox="0 0 24 24" stroke="currentcolor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 15"></polyline></svg>
                                 {{- .ReadingTime }} 分钟
                             </span>
                         </div>
