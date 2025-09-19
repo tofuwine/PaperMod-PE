@@ -218,11 +218,5 @@
 
 .post-entry:hover .entry-tag {
     background: var(--pe-primary);
-    color: var(--theme);
-}
-
-/* 深色模式下的标签颜色变化 */
-.dark .post-entry:hover .entry-tag {
-    background: #6366f1;
-    color: var(--theme);
+    color: #fff;
 }

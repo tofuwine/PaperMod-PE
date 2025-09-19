@@ -2,7 +2,7 @@
 /***********************************/
 
 /* 归档页面头部样式 */
-.pe-archive-header {
+.pe-page-header {
     position: relative;
     margin-bottom: 3rem;
     text-align: center;
@@ -14,13 +14,13 @@
 }
 
 /* 头部内容容器 */
-.pe-archive-header-content {
+.pe-page-header-content {
     position: relative;
     z-index: 2;
 }
 
 /* 归档页面标题 */
-.pe-archive-title {
+.pe-page-title {
     font-size: 3rem;
     font-weight: 700;
     color: var(--primary);
@@ -41,7 +41,7 @@
 }
 
 /* 归档页面描述 */
-.pe-archive-description {
+.pe-page-description {
     font-size: 1.1rem;
     color: var(--secondary);
     max-width: 800px;
@@ -49,24 +49,14 @@
     line-height: 1.6;
 }
 
-/* 提示文本 */
-.pe-archive-tip {
-    font-size: 1rem;
-    color: var(--secondary);
-    margin-top: 1rem;
-    opacity: 0.8;
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-
 /* 响应式调整 */
 @media (max-width: 768px) {
-    .pe-archive-header {
+    .pe-page-header {
         padding: 1.5rem 0.8rem;
         margin-bottom: 2rem;
     }
     
-    .pe-archive-title {
+    .pe-page-title {
         font-size: 2.2rem;
     }
     
@@ -74,22 +64,18 @@
         font-size: 1.2rem;
     }
     
-    .pe-archive-description {
+    .pe-page-description {
         font-size: 1rem;
         padding: 0 1rem;
-    }
-    
-    .pe-archive-tip {
-        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
-    .pe-archive-header {
+    .pe-page-header {
         padding: 1.2rem 0.6rem;
     }
     
-    .pe-archive-title {
+    .pe-page-title {
         font-size: 1.8rem;
     }
     
@@ -100,12 +86,12 @@
 }
 
 /* 深色模式适配 */
-.dark .pe-archive-header {
+.dark .pe-page-header {
     background: var(--code-bg);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.dark .pe-archive-header::before {
+.dark .pe-page-header::before {
     background: repeating-linear-gradient(
         to bottom,
         var(--tertiary),

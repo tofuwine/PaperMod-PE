@@ -3,17 +3,16 @@
 {{ $archiveJS := resources.Get "js/archive.js" | minify | fingerprint }}
 <script defer crossorigin="anonymous" src="{{ $archiveJS.RelPermalink }}" integrity="{{ $archiveJS.Data.Integrity }}"></script>
 
-<header class="pe-archive-header">
-    <div class="pe-archive-header-content">
-        <h1 class="pe-archive-title">{{ .Title }}<sup
+<header class="pe-page-header">
+    <div class="pe-page-header-content">
+        <h1 class="pe-page-title">{{ .Title }}<sup
                 class="pe-archive-total-count">{{ len (where site.RegularPages "Type" "in" site.Params.mainSections) }}</sup>
         </h1>
         {{- if .Description }}
-        <div class="pe-archive-description">
+        <div class="pe-page-description">
             {{ .Description }}
         </div>
         {{- end }}
-        <div class="pe-archive-tip" id="pe-archive-tip">点击年份可展开/折叠</div>
     </div>
 </header>
 

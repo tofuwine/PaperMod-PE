@@ -74,7 +74,7 @@ img.pe-moment-profile {
     background-color: #ffffff;
 }
 
-img.pe-moment-profile:hover {
+.pe-moment:hover img.pe-moment-profile {
     transition: 1s;
     -webkit-transition: 1s;
     -moz-transition: 1s;
@@ -133,19 +133,9 @@ a.pe-moment-tag {
     transition: all 0.3s ease;
 }
 .pe-moment-tag:hover {
-    color: var(--primary);
-    background: var(--accent);
+    color: #fff;
+    background: var(--pe-primary-hover-color);
     transform: translateY(-2px);
-}
-
-.dark .pe-moment-tag {
-    background-color: rgba(255, 255, 255, 0.1); /* 暗色背景 */
-    color: var(--secondary);
-}
-
-.dark .pe-moment-tag:hover {
-    background-color: var(--accent);
-    color: var(--bg);
 }
 
 /* 时间线样式已移除 */
@@ -162,7 +152,7 @@ a.pe-moment-tag {
 .pe-moment-time {
     display: inline-block;
     color: var(--secondary);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 500;
 }
 
