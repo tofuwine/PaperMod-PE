@@ -3,7 +3,15 @@
 {{ $css := resources.Get "css/pe/posts.css" | minify | fingerprint }}
 <link crossorigin="anonymous" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" rel="preload stylesheet" as="style">
 
-<header class="page-header">
+<header class="pe-page-header">
+    <div class="pe-page-header-content">
+        <h1 class="pe-page-title">{{ .Title }}</h1>
+        {{- if .Description }}
+        <div class="pe-page-description">
+            {{ .Description }}
+        </div>
+        {{- end }}
+    </div>
 </header>
 
 {{- $class := "post-entry" }}
