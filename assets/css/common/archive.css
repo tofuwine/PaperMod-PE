@@ -499,6 +499,10 @@ html {
     );
 }
 
+.dark .archive-posts {
+    background: var(--code-bg);
+}
+
 .dark .archive-year-header:hover {
     color: #6366f1;
 }
