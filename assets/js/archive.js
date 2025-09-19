@@ -20,21 +20,21 @@
         yearContainers.forEach((container) => {
             container.style.opacity = '0';
             container.style.transform = 'translateY(20px)'; // 垂直移动更适合居中时间轴
-            container.style.transition = `opacity 0.6s ease 0.6s, transform 0.6s ease 0.6s`;
+            container.style.transition = `opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s`;
         });
         
         // 初始化月份容器 - 不使用translateX以避免与CSS中的左右布局冲突
         monthContainers.forEach((container) => {
             container.style.opacity = '0';
             container.style.transform = 'translateY(15px)'; // 垂直移动以适应时间轴布局
-            container.style.transition = `opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s`;
+            container.style.transition = `opacity 0.2s ease 0.2s, transform 0.2s ease 0.2s`;
         });
         
         // 初始化文章条目
         postEntries.forEach((entry) => {
             entry.style.opacity = '0';
             entry.style.transform = 'translateY(10px)'; // 垂直移动以适应时间轴布局
-            entry.style.transition = `opacity 0.4s ease 0.4s, transform 0.4s ease 0.4s`;
+            entry.style.transition = `opacity 0.2s ease 0.2s, transform 0.2s ease 0.2s`;
         });
     }
         
@@ -103,7 +103,7 @@
                 if (index === 0) {
                     // 确保第一个年份是展开状态
                     yearContainer.classList.add('open', 'initially-open');
-                    content.style.maxHeight = '2000px';
+                    content.style.maxHeight = '20000px';
                     
                     // 获取年份下的所有月份和文章
                     const monthsInYear = Array.from(yearContainer.querySelectorAll('.archive-month'));
@@ -171,54 +171,60 @@
                 });
             });
             
-            // 快速折叠年份的函数
+            // 折叠年份的函数
             function collapseYear(yearContainer, months, posts, content, isOtherYear = false) {
                 if (!isOtherYear) {
                     yearContainer.classList.remove('open');
                 }
                 
-                // 加速折叠收回的速度：设置更快的过渡时间
+                // 添加内容容器的过渡效果，延长折叠时间使动效更明显
+                content.style.transition = 'max-height 0.2s ease';
+                
+                // 先隐藏文章和月份
                 posts.forEach(post => {
-                            post.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
                             post.style.opacity = '0';
                             post.style.transform = 'translateY(10px)'; // 使用垂直移动
                         });
                         
                         months.forEach(month => {
-                            month.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
                             month.style.opacity = '0';
                             month.style.transform = 'translateY(15px)'; // 使用垂直移动
                         });
                 
-                // 更快的延迟时间
+                // 等待内容淡出后再折叠容器，延长延迟以匹配动效
                 setTimeout(() => {
                     content.style.maxHeight = '0';
-                }, 100);
+                }, 200);
             }
             
-            // 快速展开年份的函数
+            // 展开年份的函数
             function expandYear(yearContainer, months, posts, content) {
                 yearContainer.classList.add('open');
                 
-                // 立即设置最大高度，加快首次展开速度
-                content.style.maxHeight = '2000px';
+                // 添加内容容器的过渡效果
+                content.style.transition = 'max-height 0.2s ease';
                 
-                // 优化显示逻辑，加快首次展开速度
-                // 同时显示所有月份，使用非常小的延迟
-                months.forEach((month, index) => {
-                            setTimeout(() => {
-                                month.style.opacity = '1';
-                                month.style.transform = 'translateY(0)'; // 使用垂直移动
-                            }, index * 20); // 更小的延迟
-                        });
-                        
-                        // 更快地显示文章，使用更紧凑的交错动画
-                        posts.forEach((post, index) => {
-                            setTimeout(() => {
-                                post.style.opacity = '1';
-                                post.style.transform = 'translateY(0)'; // 使用垂直移动
-                            }, 50 + index * 10); // 减少基础延迟和间隔
-                        });
+                // 设置一个足够大的值作为最大高度，以便内容能够完全展开
+                content.style.maxHeight = '20000px';
+                
+                // 缩短展开延迟，加快元素出现速度
+                setTimeout(() => {
+                    // 使用更紧凑的交错动画显示月份
+                    months.forEach((month, index) => {
+                                setTimeout(() => {
+                                    month.style.opacity = '1';
+                                    month.style.transform = 'translateY(0)'; // 使用垂直移动
+                                }, index * 5);
+                            });
+                    
+                            // 使用更紧凑的交错动画显示文章
+                            posts.forEach((post, index) => {
+                                setTimeout(() => {
+                                    post.style.opacity = '1';
+                                    post.style.transform = 'translateY(0)'; // 使用垂直移动
+                                }, 20 + index * 2);
+                            });
+                }, 30);
             }
         }
         
