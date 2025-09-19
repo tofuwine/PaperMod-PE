@@ -8,10 +8,13 @@
 
 <article class="post-single">
     <header class="page-header">
+        <h1 class="moment-title">📝 我的瞬间</h1>
+        <p class="moment-description">记录生活中的点滴感悟、临时灵感和简单思考</p>
     </header>
 
     <div class="post-content">
-        <div class="pe-moments">
+        <div class="pe-moments-container">
+            <div class="pe-moments">
             <ul>
                 {{- range $moment := $paginator.Pages }}
                 {{- if .Content }}
@@ -58,6 +61,7 @@
                 {{ end }}
             </ul>
         </div>
+        </div>
     </div>
 
 </article>
@@ -94,7 +98,7 @@
                 iframe.contentWindow.postMessage({giscus: message}, 'https://giscus.app');
             }
         }
-        sendMessage({setConfig: {theme: getStoredTheme()}})
+        sendMessage({setConfig: {theme: getStoredTheme()} })
     }
     function showComment(element) {
         const slug = element.getAttribute('data-slug');

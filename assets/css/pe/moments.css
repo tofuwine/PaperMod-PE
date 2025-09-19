@@ -6,17 +6,58 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.moment-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    color: var(--primary);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.moment-description {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    max-width: 600px;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out 0.3s forwards;
+}
+
+.pe-moments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .pe-moment {
-    padding: 2rem 0;
-    gap: 1rem;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
     align-items: flex-start;
     display: flex;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    transform: translateY(10px);
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
-li.pe-moment:not(:last-child) {
-    border-bottom: 1px solid #d6d6d6;
+.pe-moment:nth-child(1) { animation-delay: 0.1s; }
+.pe-moment:nth-child(2) { animation-delay: 0.2s; }
+.pe-moment:nth-child(3) { animation-delay: 0.3s; }
+.pe-moment:nth-child(4) { animation-delay: 0.4s; }
+.pe-moment:nth-child(5) { animation-delay: 0.5s; }
+
+.pe-moment:hover {
+    transform: translateY(5px) scale(1.01);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .pe-moment-header {
@@ -25,12 +66,16 @@ li.pe-moment:not(:last-child) {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    position: relative;
 }
 
 img.pe-moment-profile {
     margin: 0;
     width: 4.8rem;
+    height: 4.8rem;
     border-radius: 50%;
+    border: 3px solid var(--border);
+    background-color: #ffffff;
 }
 
 img.pe-moment-profile:hover {
@@ -59,98 +104,224 @@ img.pe-moment-profile:hover {
 .pe-moment-body {
     width: 100%;
     overflow: hidden;
+    position: relative;
 }
 
 .pe-moment-content {
     margin-bottom: 1.6rem;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: var(--primary);
+}
+
+.pe-moment-content p {
+    margin-bottom: 1rem;
+}
+
+.pe-moment-content p:last-child {
+    margin-bottom: 0;
 }
 
 a.pe-moment-tag {
     display: inline-block;
-    padding: 0.5em 0.5em;
+    padding: 0.3em 0.8em;
     font-size: 0.875em;
-    line-height: 1;
-    color: #999999; /* 暗色字体 */
+    line-height: 1.5;
+    color: var(--secondary);
     background: var(--code-bg);
-    border-radius: 0.5rem;
+    border-radius: 16px;
     box-shadow: none;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 .pe-moment-tag:hover {
-    color: var(--pe-primary-hover-color);
-    background: var(--border);
+    color: var(--primary);
+    background: var(--accent);
+    transform: translateY(-2px);
 }
 
 .dark .pe-moment-tag {
-    background-color: #333; /* 暗色背景 */
+    background-color: rgba(255, 255, 255, 0.1); /* 暗色背景 */
+    color: var(--secondary);
 }
 
+.dark .pe-moment-tag:hover {
+    background-color: var(--accent);
+    color: var(--bg);
+}
+
+/* 时间线样式已移除 */
+
 .pe-moment-bottom {
-    margin-top: 1.2rem;
+    margin-top: 1.5rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
 }
 
 .pe-moment-time {
     display: inline-block;
-    color: #999999;
-    font-size: 1.4rem;
+    color: var(--secondary);
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .pe-moment-btn-container {
     display: flex;
-    gap: 1rem;
-    margin-left: auto;
+    gap: 0.8rem;
 }
 
 .pe-moment-btn-container a {
     box-shadow: none;
 }
 
-.pe-moment-comment-btn svg {
-    width: 1.6rem;
-    height: 1.6rem;
-    display: inline-block;
-    vertical-align: 0.15em;
-    fill: var(--pe-btn-font-color);
-}
-
 .pe-moment-comment-btn {
-    margin-left: auto;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: var(--tertiary);
-    border-radius: .5rem;
-    padding: .5rem 1.5rem;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
 }
 
 .pe-moment-comment-btn:hover {
     background-color: var(--pe-primary-hover-color);
-    border-radius: .5rem;
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.pe-moment-comment-btn svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: var(--pe-btn-font-color);
 }
 
 .pe-moment-comment {
-    margin-top: .2rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--code-bg);
+    border-radius: 12px;
+    animation: fadeInUp 0.5s ease;
 }
 
+/* 分页样式优化 */
 .page-footer {
-    margin-top: 2rem;
+    margin-top: 3rem;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.pagination a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    background-color: var(--code-bg);
+    color: var(--secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.pagination a:hover {
+    background-color: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .moment-title {
+        font-size: 2rem;
+    }
+    
+    .moment-description {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .pe-moments-container {
+        padding: 0 1rem;
+    }
 }
 
 @media screen and (max-width: 568px) {
+    .moment-title {
+        font-size: 1.8rem;
+    }
+    
     img.pe-moment-profile {
         width: 4rem;
+        height: 4rem;
     }
+    
+    .pe-moment {
+        padding: 1.5rem 1rem;
+        gap: 1rem;
+    }
+    
 }
 
 .pe-stamp {
     position: absolute;
-    right: 3rem;
-    transform: translateY(-1rem);
+    right: 2rem;
+    top: 1rem;
+    transform: rotate(15deg);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.pe-moment:hover .pe-stamp {
+    transform: rotate(5deg) scale(1.05);
+    opacity: 0.8;
 }
 
 .pe-stamp-icon {
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
+}
+
+/* 暗色模式优化 */
+.dark .list {
+    background: var(--bg);
+}
+
+.dark .pe-moment {
+    background-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark .pe-moment:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.dark .pe-moment-content {
+    color: var(--secondary);
+}
+
+.dark .pe-moment-bottom {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .pe-moment-time {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .pe-moment-content ul {
