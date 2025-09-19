@@ -56,6 +56,7 @@ html {
     position: relative;
     margin-bottom: 2.5rem;
     padding-bottom: 2rem;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
 .archive-month:nth-child(odd) .archive-month-header {
@@ -221,7 +222,6 @@ html {
     position: relative;
     padding: 0.8rem 1rem;
     margin-bottom: 0.8rem;
-    transition: all 0.3s ease;
     border-bottom: 1px solid var(--border);
     border-radius: var(--radius);
 }

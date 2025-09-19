@@ -28,6 +28,7 @@
     max-width: 400px;
     gap: 1rem;
     margin-top: 1.5rem;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
 .button {
