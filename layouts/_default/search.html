@@ -1,18 +1,14 @@
 {{- define "main" }}
 
-<header class="page-header">
-    <h1>{{- (printf "%s&nbsp;" .Title ) | htmlUnescape -}}
-    </h1>
-    {{- if .Description }}
-    <div class="post-description">
-        {{ .Description }}
+<header class="pe-page-header">
+    <div class="pe-page-header-content">
+        <h1 class="pe-page-title">{{ .Title }}</h1>
+        {{- if .Description }}
+        <div class="pe-page-description">
+            {{ .Description }}
+        </div>
+        {{- end }}
     </div>
-    {{- end }}
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-        {{- partial "translation_list.html" . -}}
-    </div>
-    {{- end }}
 </header>
 
 <div id="searchBox">

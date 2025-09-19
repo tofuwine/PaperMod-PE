@@ -13,6 +13,10 @@
     margin-bottom: .5rem;
 }
 
+.post-meta {
+    justify-content: center;
+}
+
 .post-meta,
 .breadcrumbs {
     color: var(--secondary);

@@ -8,20 +8,15 @@
 
 <article class="post-single">
     <header class="pe-page-header">
-        {{/*  <h1 class="moment-title">📝 我的瞬间</h1>
-        <p class="moment-description">记录生活中的点滴感悟、临时灵感和简单思考</p>  */}}
-
         <div class="pe-page-header-content">
-        <h1 class="pe-page-title">{{ .Title }}</h1>
-        {{- if .Description }}
-        <div class="pe-page-description">
-            {{ .Description }}
+            <h1 class="pe-page-title">{{ .Title }}</h1>
+            {{- if .Description }}
+            <div class="pe-page-description">
+                {{ .Description }}
+            </div>
+            {{- end }}
         </div>
-        {{- end }}
-    </div>
     </header>
-
-     
 
     <div class="post-content">
         <div class="pe-moments-container">
