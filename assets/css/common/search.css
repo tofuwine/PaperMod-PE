@@ -1,32 +1,44 @@
 #searchBox input {
-    padding: .4rem 1rem;
+    padding: 1rem 1.5rem;
     width: 100%;
     color: var(--primary);
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-weight: 500;
     border: 2px solid var(--tertiary);
     border-radius: var(--radius);
+    background-color: var(--theme);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 #searchBox input:focus {
-    border-color: var(--secondary);
+    border-color: var(--pe-primary);
+    box-shadow: 0 0 0 3px rgba(107, 142, 35, 0.1);
 }
 
 #searchResults li {
     list-style: none;
     border-radius: var(--radius);
-    padding: 1rem;
-    margin: 1rem 0;
+    padding: 1.2rem 1.5rem;
+    margin: 0.8rem 0;
     position: relative;
     font-weight: 500;
+    background-color: var(--entry);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
 }
 
 #searchResults {
     width: 100%;
+    margin-top: 0.5rem;
 }
 
-#searchResults li:active {
-    transition: transform 0.1s;
-    transform: scale(0.98);
+#searchResults li:active,
+#searchResults li:hover {
+    transition: all 0.3s ease;
+    transform: translateY(-2px);
+    border-color: var(--pe-primary);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 #searchResults a {
@@ -36,32 +48,27 @@
     top: 0;
     left: 0;
     outline: none;
-}
-
-#searchResults .focus {
-    transform: scale(0.98);
-    border: 2px solid var(--tertiary);
-}
-
-#searchBox .post-entry:hover {
-    box-shadow: none;
-    transition: transform 0.1s;
-    transform: scale(0.98);
+    text-decoration: none;
+    color: var(--primary);
 }
 
 .pe-search-result-wrap {
     padding-top: 1rem;
-    /* 初始化状态，可以设置一个默认的最大高度以隐藏内容，或者使用opacity:0来完全隐藏 */
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.3s ease, opacity 0.3s ease; /* 动画时长和速度曲线 */
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    background-color: var(--theme);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    margin-top: 0.5rem;
 }
 
 /* 当有内容时的样式，通过类名或其他方式激活 */
 .pe-search-result-wrap.show {
-    max-height: max-content; /* 设置一个足够大的高度以容纳任何内容，或者使用height:auto */
+    max-height: none;
     opacity: 1;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .pe-search-result-header {
