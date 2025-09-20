@@ -74,6 +74,7 @@
 @media (max-width: 480px) {
     .pe-page-header {
         padding: 1.2rem 0.6rem;
+        margin-top: 4rem;
     }
     
     .pe-page-title {
@@ -429,7 +430,6 @@ html {
 /* 响应式调整 */
 @media (max-width: 768px) {
     .pe-archive {
-        padding-left: 25px;
         margin-left: 0;
         margin-right: 0;
     }
@@ -452,7 +452,7 @@ html {
     .archive-month:nth-child(even) {
         margin-left: 0;
         margin-right: 0;
-        padding-left: 25px;
+        padding-left: 0;
         padding-right: 0;
     }
     
@@ -474,8 +474,11 @@ html {
         font-size: 1.6rem;
     }
     
-    .archive-month-header {
+    .archive-month:nth-child(odd) .archive-month-header,
+    .archive-month:nth-child(even) .archive-month-header {
         font-size: 1.3rem;
+        align-items: center;
+        justify-content: center;
     }
     
     .archive-entry-title {

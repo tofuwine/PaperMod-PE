@@ -283,3 +283,9 @@ kbd {
     background: var(--content);
     box-shadow: inset 0 -1px 0 var(--content);
 }
+
+@media (max-width: 480px) {
+    .pe-right-sidebar {
+        display: none;
+    }
+}
