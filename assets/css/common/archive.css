@@ -11,6 +11,7 @@
     border-radius: var(--radius);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    animation: fadeInUp 0.5s ease forwards;
 }
 
 /* 头部内容容器 */
@@ -221,7 +222,7 @@ html {
 .archive-month::before {
     content: '';
     position: absolute;
-    top: 6px; /* 与月份标题对齐 */
+    top: 10px; /* 与月份标题对齐 */
     width: 12px;
     height: 12px;
     border-radius: 50%;

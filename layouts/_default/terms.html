@@ -1,13 +1,15 @@
 {{- define "main" }}
 
 {{- if .Title }}
-<header class="page-header">
-    <h1>{{ .Title }}</h1>
-    {{- if .Description }}
-    <div class="post-description">
-        {{ .Description }}
+<header class="pe-page-header">
+    <div class="pe-page-header-content">
+        <h1 class="pe-page-title">{{ .Title }}</h1>
+        {{- if .Description }}
+        <div class="pe-page-description">
+            {{ .Description }}
+        </div>
+        {{- end }}
     </div>
-    {{- end }}
 </header>
 {{- end }}
 
