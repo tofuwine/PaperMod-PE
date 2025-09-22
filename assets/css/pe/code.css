@@ -83,16 +83,17 @@
     transition: all 0.3s ease;
 }
 
-/* 行号样式 */
-.chroma .lnt {
-    padding: 0 0 0 1.2rem !important;
-    color: var(--secondary);
-}
-
-/* 滚动条样式 */
+/* 固定行号表格布局 */
 .pe-code-details-content {
     position: relative;
+    overflow-x: hidden;
 }
+
+.pe-code-details-content .highlight {
+    overflow-x: auto;
+    width: 100%;
+}
+
 
 .pe-code-details-content::-webkit-scrollbar {
     width: .8rem;
@@ -231,6 +232,8 @@ table.lntable {
     background-color: rgba(0, 0, 0, 0.05);
     color: var(--pe-primary-hover-color);
 }
+
+
 
 .dark .pe-code-copy-button:hover {
     background-color: rgba(255, 255, 255, 0.1);

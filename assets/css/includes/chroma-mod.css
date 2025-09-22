@@ -1,5 +1,4 @@
 .chroma {
-    background-color: unset !important;
 }
 
 .chroma .hl {
@@ -7,7 +6,222 @@
 }
 
 .chroma .lnt {
-    padding: 0 0 0 12px;
+    text-align: right;
+    user-select: none;
+}
+
+/* 非颜色相关样式 - 从chroma-styles.css移动过来 */
+.chroma .x {
+}
+
+.chroma .cl {
+}
+
+.chroma .lnlinks {
+    outline: none;
+    text-decoration: none;
+    color: inherit
+}
+
+.chroma .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.chroma .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.chroma .lnt {
+    white-space: pre;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-right: 0.4em;
+    text-align: right;
+}
+
+.chroma .ln {
+    white-space: pre;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+}
+
+.chroma .line {
+    display: flex;
+}
+
+.chroma .bp {
+}
+
+.chroma .fm {
+}
+
+.chroma .ge {
+    font-style: italic
+}
+
+.chroma .gs {
+    font-weight: bold
+}
+
+.chroma .g {
+}
+
+/* 暗色主题非颜色相关样式 */
+.dark .chroma .x {
+}
+
+.dark .chroma .cl {
+}
+
+.dark .chroma .lnlinks {
+    outline: none;
+    text-decoration: none;
+    color: inherit
+}
+
+.dark .chroma .lntd {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.dark .chroma .lntable {
+    border-spacing: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.dark .chroma .lnt {
+    white-space: pre;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+}
+
+.dark .chroma .ln {
+    white-space: pre;
+    -webkit-user-select: none;
+    user-select: none;
+    margin-right: 0.4em;
+    padding: 0 0.4em 0 0.4em;
+}
+
+.dark .chroma .line {
+    display: flex;
+}
+
+.dark .chroma .n {
+}
+
+.dark .chroma .na {
+}
+
+.dark .chroma .nb {
+}
+
+.dark .chroma .bp {
+}
+
+.dark .chroma .nc {
+    font-weight: bold
+}
+
+.dark .chroma .no {
+    font-weight: bold
+}
+
+.dark .chroma .nd {
+    font-weight: bold
+}
+
+.dark .chroma .nf {
+    font-weight: bold
+}
+
+.dark .chroma .fm {
+}
+
+.dark .chroma .nl {
+    font-weight: bold
+}
+
+.dark .chroma .nx {
+}
+
+.dark .chroma .vc {
+}
+
+.dark .chroma .vg {
+}
+
+.dark .chroma .vi {
+}
+
+.dark .chroma .vm {
+}
+
+.dark .chroma .p {
+}
+
+.dark .chroma .c {
+    font-style: italic
+}
+
+.dark .chroma .ch {
+    font-style: italic
+}
+
+.dark .chroma .cm {
+    font-style: italic
+}
+
+.dark .chroma .c1 {
+    font-style: italic
+}
+
+.dark .chroma .cs {
+    font-weight: bold;
+    font-style: italic
+}
+
+.dark .chroma .cp {
+    font-weight: bold;
+    font-style: italic
+}
+
+.dark .chroma .cpf {
+    font-weight: bold;
+    font-style: italic
+}
+
+.dark .chroma .g {
+}
+
+.dark .chroma .ge {
+    font-style: italic
+}
+
+.dark .chroma .gh {
+    font-weight: bold
+}
+
+.dark .chroma .gs {
+    font-weight: bold
+}
+
+.dark .chroma .gl {
+    text-decoration: underline
 }
 
 .highlight pre.chroma code {
@@ -21,4 +235,31 @@
 
 .chroma .lntd:last-of-type {
     width: 100%;
+}
+
+/* 行号单元格样式 - 固定宽度且不滚动 */
+.chroma .lntd:first-child {
+    width: 4.5rem;
+    min-width: 4.5rem;
+    max-width: 4.5rem;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+}
+
+/* 代码内容单元格样式 */
+.chroma .lntd:last-child {
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* 确保代码内容可以横向滚动 */
+.chroma .lntable tbody {
+    width: 100%;
+}
+
+.chroma .lntable tr {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
 }
