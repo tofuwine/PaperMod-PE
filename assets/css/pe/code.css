@@ -218,8 +218,6 @@ table.lntable {
     justify-content: center;
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 /* 折叠状态下隐藏复制按钮 */
@@ -232,7 +230,6 @@ table.lntable {
 .pe-code-copy-button:hover {
     background-color: rgba(0, 0, 0, 0.05);
     color: var(--pe-primary-hover-color);
-    transform: translateY(-50%) scale(1.1);
 }
 
 .dark .pe-code-copy-button:hover {
