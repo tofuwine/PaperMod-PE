@@ -1,289 +1,300 @@
+/* 赞赏功能样式 - 全新设计 */
 .pe-reward-wrap {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
 
-    /* 赞赏功能样式 - 全新设计 */
-    .pe-reward-wrap {
-        margin-top: 3rem;
-        margin-bottom: 2rem;
-        width: 100%;
-    }
+/* 赞赏卡片样式 */
+.pe-reward-card {
+    background-color: var(--entry);
+    border-radius: var(--radius);
+    padding: 2.4rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
 
-    /* 赞赏卡片样式 */
+.pe-reward-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+/* 赞赏头部样式 */
+.pe-reward-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.pe-reward-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.8rem;
+}
+
+.pe-reward-desc {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    line-height: 1.6;
+}
+
+/* 按钮容器样式 */
+.pe-reward-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* 打赏按钮样式 */
+.pe-reward-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 1.2rem 2.4rem;
+    background: linear-gradient(135deg, var(--pe-primary), #ff8e8e);
+    color: white;
+    border: none;
+    border-radius: 5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(255, 107, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.pe-reward-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.6s ease;
+}
+
+.pe-reward-btn:hover::before {
+    left: 100%;
+}
+
+.pe-reward-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.4);
+}
+
+.pe-reward-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+/* 深色模式下的打赏按钮 */
+.dark .pe-reward-btn {
+    background: linear-gradient(135deg, var(--pe-primary), #4f6aa8);
+    box-shadow: 0 4px 14px rgba(108, 131, 181, 0.3);
+}
+
+.dark .pe-reward-btn:hover {
+    box-shadow: 0 6px 18px rgba(108, 131, 181, 0.4);
+}
+
+.dark .pe-reward-btn:active {
+    box-shadow: 0 2px 8px rgba(108, 131, 181, 0.3);
+}
+
+.pe-reward-btn .icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* 模态框样式 */
+.pe-reward-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pe-reward-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.pe-reward-modal.hidden {
+    display: none;
+}
+
+/* 模态框内容样式 */
+.pe-reward-modal-content {
+    background-color: var(--theme);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 48rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--border);
+}
+
+.pe-reward-modal.show .pe-reward-modal-content {
+    transform: scale(1);
+}
+
+/* 模态框头部样式 */
+.pe-reward-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.pe-reward-modal-header h3 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* 关闭按钮样式 */
+.pe-reward-close-btn {
+    background: none;
+    border: none;
+    font-size: 2.4rem;
+    color: var(--secondary);
+    cursor: pointer;
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.pe-reward-close-btn:hover {
+    background-color: var(--code-bg);
+    color: var(--primary);
+}
+
+/* 二维码容器样式 */
+.pe-reward-qr-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2.4rem;
+}
+
+/* 二维码项样式 */
+.pe-reward-qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.pe-reward-qr-item:hover {
+    transform: translateY(-3px);
+}
+
+/* 二维码图片样式 */
+.pe-reward-qr-img {
+    width: 16rem;
+    height: 16rem;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pe-reward-qr-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.pe-reward-qr-item:hover .pe-reward-qr-img img {
+    transform: scale(1.05);
+}
+
+/* 二维码标签样式 */
+.pe-reward-qr-label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* 模态框底部样式 */
+.pe-reward-modal-footer {
+    text-align: center;
+    padding: 1.6rem 2rem;
+    border-top: 1px solid var(--border);
+}
+
+.pe-reward-thanks {
+    font-size: 1.4rem;
+    color: var(--secondary);
+    margin: 0;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
     .pe-reward-card {
-        background-color: var(--entry);
-        border-radius: var(--radius);
-        padding: 2.4rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        border: 1px solid var(--border);
-        transition: all 0.3s ease;
-    }
-
-    .pe-reward-card:hover {
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-        transform: translateY(-2px);
-    }
-
-    /* 赞赏头部样式 */
-    .pe-reward-header {
-        text-align: center;
-        margin-bottom: 2rem;
+        padding: 2rem;
     }
 
     .pe-reward-title {
-        font-size: 1.8rem;
-        font-weight: 600;
-        color: var(--primary);
-        margin-bottom: 0.8rem;
+        font-size: 1.6rem;
     }
 
     .pe-reward-desc {
-        font-size: 1.4rem;
-        color: var(--secondary);
-        line-height: 1.6;
+        font-size: 1.3rem;
     }
 
-    /* 按钮容器样式 */
-    .pe-reward-btn-container {
-        display: flex;
-        justify-content: center;
-    }
-
-    /* 打赏按钮样式 */
     .pe-reward-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        padding: 1.2rem 2.4rem;
-        background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
-        color: white;
-        border: none;
-        border-radius: 5rem;
-        font-size: 1.5rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 14px rgba(255, 107, 107, 0.3);
-        position: relative;
-        overflow: hidden;
+        padding: 1rem 2rem;
+        font-size: 1.4rem;
     }
 
-    .pe-reward-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: all 0.6s ease;
-    }
-
-    .pe-reward-btn:hover::before {
-        left: 100%;
-    }
-
-    .pe-reward-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(255, 107, 107, 0.4);
-    }
-
-    .pe-reward-btn:active {
-        transform: translateY(0);
-        box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
-    }
-
-    .pe-reward-btn .icon {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* 模态框样式 */
-    .pe-reward-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .pe-reward-modal.show {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .pe-reward-modal.hidden {
-        display: none;
-    }
-
-    /* 模态框内容样式 */
-    .pe-reward-modal-content {
-        background-color: var(--theme);
-        border-radius: var(--radius);
-        width: 90%;
-        max-width: 48rem;
-        overflow: hidden;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        transform: scale(0.95);
-        transition: transform 0.3s ease;
-        border: 1px solid var(--border);
-    }
-
-    .pe-reward-modal.show .pe-reward-modal-content {
-        transform: scale(1);
-    }
-
-    /* 模态框头部样式 */
-    .pe-reward-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1.6rem 2rem;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .pe-reward-modal-header h3 {
-        font-size: 1.7rem;
-        font-weight: 600;
-        color: var(--primary);
-        margin: 0;
-    }
-
-    /* 关闭按钮样式 */
-    .pe-reward-close-btn {
-        background: none;
-        border: none;
-        font-size: 2.4rem;
-        color: var(--secondary);
-        cursor: pointer;
-        padding: 0;
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        transition: all 0.2s ease;
-    }
-
-    .pe-reward-close-btn:hover {
-        background-color: var(--code-bg);
-        color: var(--primary);
-    }
-
-    /* 二维码容器样式 */
     .pe-reward-qr-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 2rem;
-        padding: 2.4rem;
+        padding: 2rem 1.6rem;
     }
 
-    /* 二维码项样式 */
-    .pe-reward-qr-item {
-        display: flex;
+    .pe-reward-qr-img {
+        width: 14rem;
+        height: 14rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .pe-reward-qr-container {
         flex-direction: column;
-        align-items: center;
-        transition: transform 0.3s ease;
+        gap: 1.6rem;
     }
 
-    .pe-reward-qr-item:hover {
-        transform: translateY(-3px);
-    }
-
-    /* 二维码图片样式 */
     .pe-reward-qr-img {
         width: 16rem;
         height: 16rem;
-        background-color: white;
-        padding: 1rem;
-        border-radius: 0.8rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-bottom: 1rem;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .pe-reward-qr-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-
-    .pe-reward-qr-item:hover .pe-reward-qr-img img {
-        transform: scale(1.05);
-    }
-
-    /* 二维码标签样式 */
-    .pe-reward-qr-label {
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: var(--primary);
-        margin: 0;
-    }
-
-    /* 模态框底部样式 */
-    .pe-reward-modal-footer {
-        text-align: center;
-        padding: 1.6rem 2rem;
-        border-top: 1px solid var(--border);
-    }
-
-    .pe-reward-thanks {
-        font-size: 1.4rem;
-        color: var(--secondary);
-        margin: 0;
-    }
-
-    /* 响应式设计 */
-    @media screen and (max-width: 768px) {
-        .pe-reward-card {
-            padding: 2rem;
-        }
-
-        .pe-reward-title {
-            font-size: 1.6rem;
-        }
-
-        .pe-reward-desc {
-            font-size: 1.3rem;
-        }
-
-        .pe-reward-btn {
-            padding: 1rem 2rem;
-            font-size: 1.4rem;
-        }
-
-        .pe-reward-qr-container {
-            padding: 2rem 1.6rem;
-        }
-
-        .pe-reward-qr-img {
-            width: 14rem;
-            height: 14rem;
-        }
-    }
-
-    @media screen and (max-width: 480px) {
-        .pe-reward-qr-container {
-            flex-direction: column;
-            gap: 1.6rem;
-        }
-
-        .pe-reward-qr-img {
-            width: 16rem;
-            height: 16rem;
-        }
     }
 }
