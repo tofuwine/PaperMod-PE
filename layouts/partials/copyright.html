@@ -1,17 +1,33 @@
 <div class="pe-copyright">
-    <hr>
-    <blockquote>
-    {{ if .Param "reposted" }}
-        <p>本文为转载内容，原文信息如下：</p>
-        <p>原文标题：{{- .Param "repostedTitle" -}}</p>
-        <p>原文作者：{{- .Param "repostedAuthor" -}}</p>
-        <p>原文链接：<a href="{{- .Param "repostedLink" -}}" target="_blank">{{- .Param "repostedLink" -}}</a></p>
-        <p>如有侵权，请<a href="mailto://{{ .Param "contactEmail" }}">联系作者</a>删除。</p>
-    {{ else }}
-        <p>本文为原创内容，版权归作者所有。如需转载，请在文章中声明本文标题及链接。</p>
-        <p>文章标题：{{ .Title }} —— {{ .Param "author" }}</p>
-        <p>文章链接：<a href="{{ .Permalink }}" target="_blank">{{ .Permalink }}</a></p>
-        <p>许可协议：<a href="{{- .Param "licenseLink" -}}" target="_blank">{{- .Param "licenseName" -}}</a></p>
-    {{ end }}
-    </blockquote>
+    <div class="pe-copyright-container">
+        <div class="pe-copyright-header">
+            <svg class="pe-copyright-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 7H13V13H11V7ZM11 15H13V17H11V15Z" fill="currentColor"/>
+            </svg>
+            <h3 class="pe-copyright-title">{{ if .Param "reposted" }}转载信息{{ else }}版权信息{{ end }}</h3>
+        </div>
+        
+        <div class="pe-copyright-content">
+            {{ if .Param "reposted" }}
+                <p><span class="pe-copyright-label">内容类型：</span><span class="pe-copyright-value">转载文章</span></p>
+                <p><span class="pe-copyright-label">原文标题：</span><span class="pe-copyright-value">{{- .Param "repostedTitle" -}}</span></p>
+                <p><span class="pe-copyright-label">原文作者：</span><span class="pe-copyright-value">{{- .Param "repostedAuthor" -}}</span></p>
+                <p><span class="pe-copyright-label">原文链接：</span><span class="pe-copyright-value"><a href='{{- .Param "repostedLink" -}}' target="_blank" class="pe-copyright-link">{{- .Param "repostedLink" -}}</a></span></p>
+                
+                <div class="pe-copyright-divider"></div>
+                
+                <p><span class="pe-copyright-label">版权说明：</span><span class="pe-copyright-value">如有侵权，请<a href='mailto://{{ .Param "contactEmail" }}' class="pe-copyright-link">联系作者</a>删除。</span></p>
+            {{ else }}
+                <p><span class="pe-copyright-label">内容类型：</span><span class="pe-copyright-value">原创文章</span></p>
+                <p><span class="pe-copyright-label">文章标题：</span><span class="pe-copyright-value">{{ .Title }}</span></p>
+                <p><span class="pe-copyright-label">作者信息：</span><span class="pe-copyright-value">{{ .Param "author" }}</span></p>
+                <p><span class="pe-copyright-label">文章链接：</span><span class="pe-copyright-value"><a href="{{ .Permalink }}" target="_blank" class="pe-copyright-link">{{ .Permalink }}</a></span></p>
+                
+                <div class="pe-copyright-divider"></div>
+                
+                <p><span class="pe-copyright-label">版权声明：</span><span class="pe-copyright-value">本文为原创内容，版权归作者所有。如需转载，请在文章中声明本文标题及链接。</span></p>
+                <p><span class="pe-copyright-label">许可协议：</span><span class="pe-copyright-value"><a href='{{- .Param "licenseLink" -}}' target="_blank" class="pe-copyright-link">{{- .Param "licenseName" -}}</a></span></p>
+            {{ end }}
+        </div>
+    </div>
 </div>

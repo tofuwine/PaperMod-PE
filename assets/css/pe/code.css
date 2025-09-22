@@ -10,44 +10,57 @@
     color: var(--pe-primary-hover-color);
 }
 
-/* 代码块样式 */
+/* 代码块样式 - 全新设计 */
 .pe-code-block-wrap {
     border-radius: var(--radius);
     margin: var(--content-gap) auto;
-    background-color: var(--pe-code-block-header-bg-color);
+    background-color: var(--entry);
+    border: 1px solid var(--border);
     font-family: Consolas, sans-serif;
     overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
+/* 代码块头部样式 */
 .pe-code-block-header {
     display: flex;
     width: 100%;
     align-items: center;
-    color: var(--pe-code-block-header-color);
+    color: var(--primary);
     justify-content: space-between;
-    padding: .4rem 1rem;
+    padding: .8rem 1.2rem;
     font-size: 1.4rem;
+    background-color: var(--pe-code-block-header-bg-color);
+    border-bottom: 1px solid var(--border);
 }
 
 .pe-code-block-header-left {
     text-align: left;
     display: flex;
-    align-items: baseline;
-    gap: .2rem;
+    align-items: center;
+    gap: .6rem;
+    font-weight: 500;
 }
 
 .pe-code-block-header-center {
     text-align: center;
+    color: var(--secondary);
+    font-size: 1.3rem;
 }
 
+/* 重新设计右侧按钮区域，确保固定宽度和布局一致性 */
 .pe-code-block-header-right {
     line-height: 1rem;
     text-align: right;
-    width: 2rem;
+    width: 2.4rem;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    position: relative;
 }
 
+/* 代码内容区域样式 */
 .post-content .highlight:not(table) {
     margin: unset;
     background: var(--pe-code-block-bg-color) !important;
@@ -59,42 +72,42 @@
     font-size: 1.4rem;
     color: var(--pe-code-block-color);
     border-radius: unset;
+    padding: 0;
+    margin: 0;
 }
 
+/* 图标样式 */
 .pe-icon {
     width: 2rem;
     height: 2rem;
+    transition: all 0.3s ease;
 }
 
-.copy-code:hover {
-    background: var(--pe-primary-hover-color);
-}
-
+/* 行号样式 */
 .chroma .lnt {
     padding: 0 0 0 1.2rem !important;
+    color: var(--secondary);
 }
 
-/* 滚动条 */
-.post-content :not(table) ::-webkit-scrollbar-thumb {
-    border: .2rem solid var(--pe-code-block-bg-color);
-    background: var(--pe-scrollbar-bg-color);
-}
-
-.post-content :not(table) ::-webkit-scrollbar-thumb:hover {
-    background: var(--pe-scrollbar-hover-bg-color);
+/* 滚动条样式 */
+.pe-code-details-content {
+    position: relative;
 }
 
 .pe-code-details-content::-webkit-scrollbar {
     width: .8rem;
+    height: .8rem;
 }
 
 .pe-code-details-content::-webkit-scrollbar-track {
-    background: var(--pe-code-block-bg-color); /* Background of the scrollbar track */
+    background: var(--pe-code-block-bg-color);
 }
 
 .pe-code-details-content::-webkit-scrollbar-thumb {
     border: .2rem solid var(--pe-code-block-bg-color);
     background: var(--pe-scrollbar-bg-color);
+    border-radius: .4rem;
+    transition: all 0.3s ease;
 }
 
 .pe-code-details-content::-webkit-scrollbar-thumb:hover {
@@ -107,35 +120,38 @@
 
 table.lntable {
     overflow-x: unset;
+    width: 100%;
 }
 
-.pe-code-block-container pre {
-    margin: unset;
-}
-
+/* 折叠功能样式 */
 .pe-code-details .pe-code-details-summary:hover {
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark .pe-code-details .pe-code-details-summary:hover {
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .pe-code-details i.pe-code-details-icon {
-    color: var(--content);
-    -webkit-transition: transform 0.2s ease;
-    -moz-transition: transform 0.2s ease;
-    -o-transition: transform 0.2s ease;
-    transition: transform 0.2s ease;
+    color: var(--pe-primary-hover-color);
+    -webkit-transition: transform 0.3s ease;
+    -moz-transition: transform 0.3s ease;
+    -o-transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .dark .pe-code-details i.pe-code-details-icon {
-    color: var(--content);
+    color: var(--pe-primary-hover-color);
 }
 
 .pe-code-details .pe-code-details-content {
     max-height: 0;
     overflow-y: hidden;
-    -webkit-transition: max-height 0.8s cubic-bezier(0, 1, 0, 1) -0.1s;
-    -moz-transition: max-height 0.8s cubic-bezier(0, 1, 0, 1) -0.1s;
-    -o-transition: max-height 0.8s cubic-bezier(0, 1, 0, 1) -0.1s;
-    transition: max-height 0.8s cubic-bezier(0, 1, 0, 1) -0.1s;
+    -webkit-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) -0.1s;
+    -moz-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) -0.1s;
+    -o-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) -0.1s;
+    transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) -0.1s;
 }
 
 .pe-code-details.open i.pe-code-details-icon {
@@ -148,10 +164,10 @@ table.lntable {
 
 .pe-code-details.open .pe-code-details-content {
     max-height: 80vh;
-    -webkit-transition: max-height 0.8s cubic-bezier(0.5, 0, 1, 0) 0s;
-    -moz-transition: max-height 0.8s cubic-bezier(0.5, 0, 1, 0) 0s;
-    -o-transition: max-height 0.8s cubic-bezier(0.5, 0, 1, 0) 0s;
-    transition: max-height 0.8s cubic-bezier(0.5, 0, 1, 0) 0s;
+    -webkit-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -moz-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    -o-transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0s;
 }
 
 .pe-code-details.scrollable .pe-code-details-content{
@@ -162,26 +178,98 @@ table.lntable {
     overflow: auto;
 }
 
+/* 图标内容 */
 .pe-code-details .fa-chevron-right:before {
     content: "\f105";
+}
+
+/* 重新设计省略号图标 - 向左移动一些，与复制按钮保持在同一中线上 */
+.pe-code-details .fa-ellipsis-h {
+    position: absolute;
+    right: 2px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    z-index: 1;
 }
 
 .pe-code-details .fa-ellipsis-h:before {
     content: "\f141";
 }
 
-.pe-code-details.open .fa-ellipsis-h:before {
-    content: "";
+/* 展开状态下隐藏省略号图标 */
+.pe-code-details.open .fa-ellipsis-h {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.pe-code-details .pe-code-copy-button {
-    display: none;
+/* 重新设计复制按钮样式 - 确保在展开状态下与省略号图标位置一致 */
+.pe-code-copy-button {
+    background: transparent;
+    border: none;
+    color: var(--secondary);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.pe-code-details.open .pe-code-copy-button {
-    display: inherit;
+/* 折叠状态下隐藏复制按钮 */
+.pe-code-details:not(.open) .pe-code-copy-button {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .pe-code-copy-button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
     color: var(--pe-primary-hover-color);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.dark .pe-code-copy-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 代码块悬停效果 */
+.pe-code-block-wrap:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Dark模式适配 - 增强样式 */
+.dark .pe-code-block-wrap {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.dark .pe-code-block-wrap:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .pe-code-block-header {
+        padding: 0.6rem 0.8rem;
+        font-size: 1.2rem;
+    }
+    
+    .pe-code-block-header-center {
+        font-size: 1.1rem;
+    }
+    
+    .pe-icon {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+    
+    .post-content pre code {
+        font-size: 1.3rem;
+    }
 }

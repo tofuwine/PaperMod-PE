@@ -1,21 +1,163 @@
+/* 版权信息样式 - 全新设计 */
 .pe-copyright {
-    margin-top: 2em;
-    font-size: 1.4rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
 }
 
-.pe-copyright hr {
-    border-style: dashed;
+.pe-copyright-container {
+    background-color: var(--entry);
+    border-radius: var(--radius);
+    padding: 2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.pe-copyright-container:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.pe-copyright-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.pe-copyright-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
     color: var(--pe-primary-hover-color);
 }
 
-.pe-copyright blockquote {
-    margin: 1rem 0;
-    padding: 0 1rem;
-    border-inline-start: .3rem solid var(--pe-primary-hover-color);
+.pe-copyright-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin: 0;
 }
 
-.pe-copyright a {
-    box-shadow: 0 .1rem;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+.pe-copyright-content {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: var(--secondary);
+}
+
+.pe-copyright-content p {
+    margin-bottom: 0.8rem;
+    margin-top: 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.pe-copyright-content p:last-child {
+    margin-bottom: 0;
+}
+
+.pe-copyright-label {
+    font-weight: 500;
+    color: var(--primary);
+    min-width: 8rem;
+    display: inline-block;
+}
+
+.pe-copyright-value {
+    flex: 1;
+    word-break: break-word;
+}
+
+.pe-copyright-link {
+    color: var(--pe-primary);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 0 0.2rem;
+}
+
+.pe-copyright-link:hover {
+    color: var(--pe-primary-hover-color);
+}
+
+.pe-copyright-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--pe-primary-hover-color);
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+}
+
+.pe-copyright-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* 分隔线样式 */
+.pe-copyright-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 1.6rem 0;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 768px) {
+    .pe-copyright-container {
+        padding: 1.6rem;
+    }
+    
+    .pe-copyright-title {
+        font-size: 1.4rem;
+    }
+    
+    .pe-copyright-content {
+        font-size: 1.3rem;
+    }
+    
+    .pe-copyright-label {
+        min-width: 6rem;
+    }
+}
+
+/* Dark模式适配 */
+.dark .pe-copyright-container {
+    background-color: var(--entry);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: var(--border);
+}
+
+.dark .pe-copyright-container:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.dark .pe-copyright-title {
+    color: var(--primary);
+}
+
+.dark .pe-copyright-content {
+    color: var(--secondary);
+}
+
+.dark .pe-copyright-label {
+    color: var(--primary);
+}
+
+.dark .pe-copyright-link {
+    color: var(--pe-primary);
+}
+
+.dark .pe-copyright-link:hover {
+    color: var(--pe-primary-hover-color);
+}
+
+.dark .pe-copyright-divider {
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.dark .pe-copyright-header {
+    border-bottom-color: var(--border);
 }
