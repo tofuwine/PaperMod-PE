@@ -31,12 +31,11 @@
 }
 
 .post-content :not(table) ::-webkit-scrollbar-thumb {
-    border: 2px solid var(--code-block-bg);
-    background: rgb(113, 113, 117);
+    background: rgb(163, 163, 165);
 }
 
 .post-content :not(table) ::-webkit-scrollbar-thumb:hover {
-    background: rgb(163, 163, 165);
+    background: rgb(113, 113, 117);
 }
 
 .gist table::-webkit-scrollbar-thumb {
